@@ -1,8 +1,11 @@
 #ifndef DFILE_H
 #define DFILE_H
 
-#include "string.h"
+#include "utility/string.h"
 #include <fstream>
+
+namespace Utility
+{
 
 class File
 {
@@ -30,12 +33,12 @@ class File
         String * ReadBuffer;
         String * WriteBuffer;
 
-        std::ios_base WriteMode;
-
         bool     IsOpen;
         bool     IsInit;
         bool     IsReadBufInit;
         bool     IsWriteBufInit;
 };
+
+}
 
 #endif
