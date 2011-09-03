@@ -36,6 +36,7 @@ namespace Engine
 			bool hasMain; // States if the window has a main function
 
 			void Loop();
+			virtual void StandardEvents();
 	};
 }
 
