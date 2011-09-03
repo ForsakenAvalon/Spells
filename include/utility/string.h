@@ -1,5 +1,6 @@
-#ifndef DSTRING_H
-#define DSTRING_H
+
+#ifndef UTILITY_STRING_H
+#define UTILITY_STRING_H
 
 #define uint unsigned int
 
@@ -40,4 +41,4 @@ namespace Utility
 	};
 }
 
-#endif // DSTRING_H
+#endif // UTILITY_STRING_H
