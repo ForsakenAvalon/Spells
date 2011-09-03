@@ -62,6 +62,10 @@ namespace Engine
 
 			// Call main loop function for this window
 			this->ptrMain(*(this));
+
+			this->Clear();
+			this->Draw();
+			this->Display();
 		}
 	}
 
