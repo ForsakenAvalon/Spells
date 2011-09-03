@@ -65,6 +65,7 @@ namespace Engine
 		}
 	}
 
+	// Handle standard window events.
 	void Window::StandardEvents()
 	{
 		while (objWindow.GetEvent(objEvent))
