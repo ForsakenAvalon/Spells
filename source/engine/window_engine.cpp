@@ -58,9 +58,20 @@ namespace Engine
 		while (isRunning) 
 		{
 			// Handle Standard Window Events
+			this->StandardEvents();
 
 			// Call main loop function for this window
 			this->ptrMain(*(this));
+		}
+	}
+
+	void Window::StandardEvents()
+	{
+		while (objWindow.GetEvent(objEvent))
+		{
+			if (objEvent.Type == sf::Event::Closed) {
+				this->Exit();
+			}
 		}
 	}
 
