@@ -1,4 +1,7 @@
-#include "string.h"
+#include "utility/string.h"
+
+namespace Utility
+{
 
 String::String()
 {
@@ -76,4 +79,6 @@ String & String::operator =(String & textString)
 const char * String::ToTextStatic()
 {
     return (const_cast<char *> (this->CharArray));
+}
+
 }

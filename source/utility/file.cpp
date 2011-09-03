@@ -1,4 +1,7 @@
-#include "file.h"
+#include "utility/file.h"
+
+namespace Utility
+{
 
 File::File(const char * staticFilePath)
 {
@@ -49,14 +52,14 @@ File::~File()
 
 bool File::DoesFileExist(const char *staticFileName)
 {
-    std::ifstream file(staticFileName);
-    return file;
+	std::ifstream file(staticFileName);
+	return file;
 }
 
 bool File::DoesFileExist(String &stringFileName)
 {
-    std::ifstream file(stringFileName.ToTextStatic());
-    return file;
+	std::ifstream file(stringFileName.ToTextStatic());
+	return file;
 }
 
 int File::Write(String &stringText)
@@ -76,4 +79,6 @@ int File::Write(String &stringText)
 	file.close();
 
 	return 0;
+}
+
 }

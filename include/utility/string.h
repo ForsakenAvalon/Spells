@@ -3,38 +3,41 @@
 
 #define uint unsigned int
 
-class String
+namespace Utility
 {
-    public:
-        // Constructors
-        String();
-        String(const char * textStatic);
-        String(char * textBuffer);
-        String(String & textString);
-        // Deconstructors
-        ~String();
+	class String
+	{
+		public:
+			// Constructors
+			String();
+			String(const char * textStatic);
+			String(char * textBuffer);
+			String(String & textString);
+			// Deconstructors
+			~String();
+	
+			String &    Copy        (const char * textStatic);
+			String &    Copy        (String & textString);
+			uint        Length      ();
+			uint        Size        ();
 
-        String &    Copy        (const char * textStatic);
-        String &    Copy        (String & textString);
-        uint        Length      ();
-        uint        Size        ();
+			int         Find        (const char charStatic);
+			int         Find        (char & charString);
 
-        int         Find        (const char charStatic);
-        int         Find        (char & charString);
+			char   &    operator[]  (uint pointer);
 
-        char   &    operator[]  (uint pointer);
+			String &    operator=   (const char * textStatic);
+			String &    operator=   (String & textString);
 
-        String &    operator=   (const char * textStatic);
-        String &    operator=   (String & textString);
+			const char * ToTextStatic();
 
-        const char * ToTextStatic();
+		private:
+			char    *   CharArray;
+			uint        CharArraySize;
+			uint        CharArrayLength;
 
-    private:
-        char    *   CharArray;
-        uint        CharArraySize;
-        uint        CharArrayLength;
-
-        bool        isInit;
-};
+			bool        isInit;
+	};
+}
 
 #endif // DSTRING_H
