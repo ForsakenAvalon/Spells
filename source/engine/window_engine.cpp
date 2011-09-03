@@ -6,6 +6,7 @@ namespace Engine
 	{
 		objWindow.Create(sf::VideoMode(height, width), "Unnamed", sf::Style::Close);
 		isInit = true;
+		isRunning = false;
 	}
 
 	Window::~Window()
@@ -54,7 +55,7 @@ namespace Engine
 	// Executes the main loop of the program. You cannot call Loop directly, use Run instead.
 	void Window::Loop()
 	{
-		while (this->isRunning && this->objWindow.IsOpened()) 
+		while (isRunning) 
 		{
 			// Handle Standard Window Events
 
