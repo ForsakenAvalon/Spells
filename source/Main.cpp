@@ -10,7 +10,7 @@ int main()
 
 	// Assert if initialization succeded
 	assert(NULL != window && "Cannot create window at main()");
-
+	
 	window->Run();
 
 	return 0;
