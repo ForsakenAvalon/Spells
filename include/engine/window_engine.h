@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "utility/string.h"
+#include "base/state.h"
 
 namespace Engine
 {
@@ -27,6 +28,7 @@ namespace Engine
 			bool IsInit();
 
 		private:
+			Base::State objState;
 			sf::RenderWindow objWindow;
 			sf::Event objEvent;
 			//void (*ptrMain)(Window & windowMain);
