@@ -1,10 +1,15 @@
 
 #include "engine/window_engine.h"
+#include <assert.h>
 
 int main()
 {
-	Engine::Window MainWindow;
-	MainWindow.Run();
+	// Initialize Game Window
+	Engine::Window * window;
+	window = new(std::nothrow) Engine::Window;
+
+	// Assert if initialization succeded
+	assert(NULL != window && "Cannot create window at main()");
 
 	return 0;
 }
