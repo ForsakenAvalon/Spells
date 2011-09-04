@@ -3,7 +3,7 @@
 
 namespace Engine
 {
-	Window::Window(unsigned int height /* = 800 */, unsigned int width /* =600 */, std::string &title /* = "Unnamed" */)
+	Window::Window(unsigned int height /* = 800 */, unsigned int width /* =600 */, const char * title /* = "Unnamed" */)
 	{
 		objWindow.Create(sf::VideoMode(height, width), title, sf::Style::Close);
 		isInit = true;
@@ -91,6 +91,5 @@ namespace Engine
 			isRunning = false;
 		}
 	}
-
 
 }

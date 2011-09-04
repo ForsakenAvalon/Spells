@@ -3,8 +3,8 @@
 
 int main()
 {
-	Engine::Window *window = new Engine::Window();
-	window->Run();
+	Engine::Window MainWindow;
+	MainWindow.Run();
 
 	return 0;
 }

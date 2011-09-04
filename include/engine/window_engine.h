@@ -1,7 +1,6 @@
 
 // window_engine.h
 // Wrapper for sfml window class
-// GUI features like inventory screens should be called from here and passed to renderer.
 
 #ifndef ENGINE_WINDOW_ENGINE_H
 #define ENGINE_WINDOW_ENGINE_H
@@ -14,7 +13,7 @@ namespace Engine
 	class Window 
 	{
 		public:
-			Window(unsigned int width = 800, unsigned int height = 600, std::string &title = "Unnamed");
+			Window(unsigned int width = 800, unsigned int height = 600, const char * title = "Unnamed");
 			~Window();
 
 			void Run();
