@@ -1,5 +1,6 @@
-#ifndef STATE_H
-#define STATE_H
+
+#ifndef BASE_STATE_H
+#define BASE_STATE_H
 
 namespace Base
 {
@@ -14,4 +15,4 @@ namespace Base
 	};
 }
 
-#endif
+#endif // BASE_STATE_H
