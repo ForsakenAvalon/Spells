@@ -2,11 +2,20 @@
 
 namespace Base
 {
+	//! /brief Default constructor
+	//! /descrip Should not be called outside of StateManager
+	State::State()
+	{
+		isPtrEntryInit = false;
+		isPtrConditionInit = false;
+	}
+
 	//! /brief Initialize State Class
 	//! /param uniqueId : unique Id assigned to states
-	State::State(unsigned int uniqueId)
+	State::State(unsigned int uniqueId, const char * debugName)
 	{
 		id = uniqueId;
+		name = new Util::String(debugName);
 		isPtrEntryInit = false;
 		isPtrConditionInit = false;
 	}
@@ -77,5 +86,22 @@ namespace Base
 		else {
 			return false;
 		}
+	}
+
+	//! /brief Copies the contents of the source state
+	//! /descrip Copies the exact contents of the source state, used by
+	//! StateManager when a new state is added to the state array in 
+	//! Engine::Window.
+	//! /param srcState : Source state to copy from
+	void State::operator= (State & srcState)
+	{
+		this->id = srcState.id;
+		this->name = new Util::String(srcState.name->ToTextStatic());
+		assert(NULL != srcState.ptrEntry && "State Error : State being copied without proper initialization of func ptrEntry()!");
+		assert(NULL != srcState.ptrEntry && "State Error : State being copied without proper initialization of func ptrCondition()!");
+		this->ptrEntry = srcState.ptrEntry;
+		this->ptrCondition = srcState.ptrCondition;
+		isPtrEntryInit = true;
+		isPtrConditionInit = true;
 	}
 }

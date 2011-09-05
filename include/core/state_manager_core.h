@@ -1,8 +1,10 @@
 
-#ifndef STATE_MANAGER_ENGINE_H
-#define STATE_MANAGER_ENGINE_H
+#ifndef STATE_MANAGER_CORE_H
+#define STATE_MANAGER_CORE_H
 
 #include "engine/window_engine.h"
+#include "utility/string.h"
+#include "base/state.h"
 
 namespace Core
 {
@@ -13,10 +15,13 @@ namespace Core
 			StateManager(Window * window);
 			~StateManager();
 
+			void AddState(const char * debugName, void (*entryFunc)(), bool (*conditionFunc)());
 			bool Transistion(unsigned int stateId);
 		private:
-			Window * window;
+			Window * objWindow;
+			unsigned int totalStateCount;
+			unsigned int curStateId;
 	};
 }
 
-#endif // STATE_MANAGER_ENGINE_H
+#endif // STATE_MANAGER_CORE_H

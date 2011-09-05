@@ -2,6 +2,7 @@
 #ifndef UTILITY_STRING_H
 #define UTILITY_STRING_H
 
+#define Util Utility
 #define uint unsigned int
 
 namespace Utility

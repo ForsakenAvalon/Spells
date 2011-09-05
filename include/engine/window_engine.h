@@ -11,6 +11,8 @@
 
 namespace Core
 {
+	class StateManager;
+
 	class Window 
 	{
 		public:
@@ -28,6 +30,8 @@ namespace Core
 			bool IsInit();
 
 		private:
+			Base::State * objState;
+
 			sf::RenderWindow objWindow;
 			sf::Event objEvent;
 			//void (*ptrMain)(Window & windowMain);
@@ -38,6 +42,8 @@ namespace Core
 
 			void Loop();
 			virtual void StandardEvents();
+
+			friend class StateManager;
 	};
 }
 
