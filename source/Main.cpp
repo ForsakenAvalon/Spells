@@ -13,5 +13,7 @@ int main()
 	
 	window->Run();
 
+	window->Run();
+
 	return 0;
 }
