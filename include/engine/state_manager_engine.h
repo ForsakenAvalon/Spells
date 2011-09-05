@@ -4,7 +4,7 @@
 
 #include "engine/window_engine.h"
 
-namespace Engine
+namespace Core
 {
 	class StateManager
 	{

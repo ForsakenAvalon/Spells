@@ -2,33 +2,20 @@
 
 namespace Base
 {
-	State::State()
+	State::State(unsigned int uniqueId)
 	{
-		curState = -1; // Set current state as uninitialized
+		id = uniqueId;
+		isPtrEntryInit = false;
+		isPtrConditionInit = false;
 	}
 
 	State::~State()
 	{
-	}
-
-	bool State::ChangeState(int state)
-	{
-		if (curState != state) {
-			curState = state;
-			return true;
+		if (isPtrEntryInit) {
+			this->isPtrEntryInit = 0;
 		}
-		else {
-			return false;
+		if (isPtrConditionInit) {
+			this->isPtrConditionInit = 0;
 		}
-	}
-
-	bool State::operator= (int state)
-	{
-		ChangeState(state);
-	}
-
-	int State::GetCurState()
-	{
-		return curState;
 	}
 }
