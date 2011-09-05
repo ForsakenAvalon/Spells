@@ -1,17 +1,19 @@
 
-#include "engine/window_engine.h"
+#include "core/window.h"
 #include <assert.h>
 
 int main()
 {
 	// Initialize Game Window
 	Core::Window * window;
-	window = new(std::nothrow) Core::Window;
+	window = new (std::nothrow) Core::Window;
 
 	// Assert if initialization succeded
-	assert(NULL != window && "Cannot create window at main()");
+	assert(window != NULL && "Cannot create window at main()");
 	
 	window->Run();
+
+	delete window;
 
 	return 0;
 }

@@ -67,7 +67,7 @@ namespace Utility
 	{
 		sf::Music *music = new sf::Music();
 
-		if ( music->LoadFromFile("resources/music/" + filename) )
+		if ( music->OpenFromFile("resources/music/" + filename) )
 			return music;
 
 		delete music;
