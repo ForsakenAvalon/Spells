@@ -6,8 +6,6 @@
 // that window needs an array of possible states. Therefore I've decided to use an attach function system where Entry and Condition executed an assigned 
 // function, this way window can have an array of states without a complex intermediate class.
 
-// Does this need an exit function
-
 namespace Base
 {
 	class State
