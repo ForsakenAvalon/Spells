@@ -6,14 +6,16 @@
 
 namespace Core
 {
+	//! /brief Manages the possible states in the game and also transistions in between.
 	class StateManager
 	{
 		public:
 			StateManager(Window * window);
 			~StateManager();
 
-			bool Transition();
+			bool Transistion(unsigned int stateId);
 		private:
+			Window * window;
 	};
 }
 

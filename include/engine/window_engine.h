@@ -9,7 +9,7 @@
 #include "utility/string.h"
 #include "base/state.h"
 
-namespace Engine
+namespace Core
 {
 	class Window 
 	{
@@ -28,7 +28,6 @@ namespace Engine
 			bool IsInit();
 
 		private:
-			Base::State objState;
 			sf::RenderWindow objWindow;
 			sf::Event objEvent;
 			//void (*ptrMain)(Window & windowMain);

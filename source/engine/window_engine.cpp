@@ -1,6 +1,6 @@
 #include "engine/window_engine.h"
 
-namespace Engine
+namespace Core
 {
 	Window::Window(unsigned int height /* = 800 */, unsigned int width /* =600 */, const char * title /* = "Unnamed" */)
 	{
