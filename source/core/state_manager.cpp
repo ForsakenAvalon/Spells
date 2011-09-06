@@ -45,8 +45,14 @@ namespace Core
 		{
 			if ( name == (*iter)->GetState() )
 			{
+				if ( CheckCurrent() ) // If there's a current state we want to call its exit transition.
+					this->current_state->TransitionExit();
+
 				this->current_state = (*iter);
 				this->current_type = name;
+
+				this->current_state->TransitionEnter();
+
 				return true;
 			}
 		}

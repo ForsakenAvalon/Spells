@@ -22,10 +22,11 @@ namespace Base
 		State( const States::StateList state, Core::Window &window );
 		virtual ~State();
 
-		virtual void Events( sf::Event objEvent )	= 0;
+		virtual void Events( sf::Event &objEvent )	= 0;
 		virtual void Update()						= 0;
+
 		virtual void TransitionEnter()				= 0; // Transition for entering this state.
-		virtual void TransitionExit()				= 0; // Transition for leaving this state.
+		virtual void TransitionExit()				= 0; // Transition for exiting this state.
 
 		States::StateList GetState() { return this->my_state; }
 

@@ -14,7 +14,7 @@ namespace Base
 	{
 
 	}
-	void State::Events( sf::Event objEvent )
+	void State::Events( sf::Event &objEvent )
 	{
 
 	}
