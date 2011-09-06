@@ -23,7 +23,6 @@ namespace Base
 	{
 
 	}
-<<<<<<< HEAD
 
 	void State::TransitionEnter()
 	{
@@ -34,6 +33,4 @@ namespace Base
 	{
 
 	}
-=======
->>>>>>> 22cb710905185047480f77f4a09522eeffa1f60a
 }

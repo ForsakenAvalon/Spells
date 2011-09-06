@@ -1,9 +1,5 @@
 
-<<<<<<< HEAD
 #include "utility/resource_manager.h"
-=======
-#include "utility/resource_manager.hpp"
->>>>>>> 22cb710905185047480f77f4a09522eeffa1f60a
 
 namespace Utility
 {
@@ -14,7 +10,6 @@ namespace Utility
 
 	ResourceManager::~ResourceManager()
 	{
-<<<<<<< HEAD
 		this->resources.clear(); // Empty the map of resources.
 	}
 
@@ -39,9 +34,6 @@ namespace Utility
 		delete this->resources[filename];
 		this->resources.erase(filename);
 		this->resources_count.erase(filename);
-=======
-		resources_.clear(); // Empty the map of resources.
->>>>>>> 22cb710905185047480f77f4a09522eeffa1f60a
 	}
 
 	template<>

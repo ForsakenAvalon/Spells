@@ -6,11 +6,6 @@
 
 #include <list>
 
-<<<<<<< HEAD
-=======
-#include <boost/any.hpp>
->>>>>>> 22cb710905185047480f77f4a09522eeffa1f60a
-#include <boost/shared_ptr.hpp>
 #include <SFML/Window/Event.hpp>
 
 namespace Core
@@ -24,12 +19,8 @@ namespace States
 	{
 		MENU = 0,
 		GAME,
-<<<<<<< HEAD
 		PAUSE,
 		OPTIONS,
-=======
-		COUNT,
->>>>>>> 22cb710905185047480f77f4a09522eeffa1f60a
 	};
 }
 
@@ -48,14 +39,9 @@ namespace Core
 
 	private:
 		bool CheckCurrent();
-<<<<<<< HEAD
 		void Transition();
 
 		std::list<Base::State*> *states;
-=======
-
-		std::list<boost::shared_ptr<Base::State>> *states;
->>>>>>> 22cb710905185047480f77f4a09522eeffa1f60a
 
 		Base::State *current_state;
 		States::StateList current_type;
