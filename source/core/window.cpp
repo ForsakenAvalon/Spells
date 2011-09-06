@@ -14,30 +14,16 @@ namespace Core
 	{
 		// Close window if still running.
 		this->Exit();
-
-		//if (hasMain) {
-		//	this->ptrMain = 0;
-		//}
 	}
 
 	void Window::Run()
 	{
-		if ( !isRunning /* && hasMain */ ) 
+		if (!isRunning)  
 		{
 			isRunning = true;
 			this->Loop();
 		}
 	}
-
-	/*void Window::Run(void (*main)(Window & windowMain))
-	{
-		if (!isRunning) {
-			isRunning = true;
-			hasMain = true;
-			this->ptrMain = main;
-			this->Loop();
-		}	
-	}*/
 
 	void Window::Clear()
 	{
@@ -57,35 +43,41 @@ namespace Core
 	// Executes the main loop of the program. You cannot call Loop directly, use Run instead.
 	void Window::Loop()
 	{
-		while ( isRunning ) 
+		while (isRunning) 
 		{
 			// Handle Standard Window Events
 			this->StandardEvents();
 
-			// Call main loop function for this window
-			//this->ptrMain(*(this));
-
+			// Do standard draw process
 			this->Clear();
 			this->Draw();
 			this->Display();
 		}
 	}
 
-	// Handle standard window events.
+	//! /brief Handle Common Window Events
+	//! /descrip Clears the event stack of common events that occur in
+	//! the window.
 	void Window::StandardEvents()
 	{
-		while ( objWindow.PollEvent(objEvent) )
+		while (objWindow.PollEvent(objEvent))
 		{
-			if ( objEvent.Type == sf::Event::Closed ) 
+			switch (objEvent.Type)
 			{
+			case sf::Event::Closed :
 				this->Exit();
+				break;
+			case sf::Event::Resized :
+				// Resize Code if required
+			default :
+				break;
 			}
 		}
 	}
 
 	void Window::Exit()
 	{
-		if ( isRunning ) 
+		if (isRunning) 
 		{
 			objWindow.Close();
 			isRunning = false;

@@ -6,14 +6,17 @@
 #define ENGINE_RENDERER_H
 
 #include <SFML\Graphics.hpp>
+#include "core\window.h"
 
 namespace Engine
 {
-	class Renderer
+	class Render
 	{
 		public:
-
+			Render(Core::Window & attachWindow);
+			~Render();
 		private:
+			Core::Window * objWindow;
 	};
 }
 
