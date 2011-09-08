@@ -21,21 +21,21 @@ namespace Core
 		}
 	}
 
-	bool StateManager::Update()
-	{
-		if ( !CheckCurrent() )
-			return false;
-
-		this->current_state->Update();
-		return true;
-	}
-
 	bool StateManager::Events( sf::Event &objEvent )
 	{
 		if ( !CheckCurrent() )
 			return false;
 
 		this->current_state->Events(objEvent);
+		return true;
+	}
+
+	bool StateManager::Update()
+	{
+		if ( !CheckCurrent() )
+			return false;
+
+		this->current_state->Update();
 		return true;
 	}
 
@@ -49,7 +49,6 @@ namespace Core
 					this->current_state->TransitionExit();
 
 				this->current_state = (*iter);
-				this->current_type = name;
 
 				this->current_state->TransitionEnter();
 

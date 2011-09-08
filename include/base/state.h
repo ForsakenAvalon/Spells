@@ -20,7 +20,10 @@ namespace Base
 	class State
 	{
 	public:
+		//! \brief Constructor
 		State( const States::StateList state, Core::Window &window );
+
+		//! \brief Deconstructor
 		virtual ~State();
 
 		//! \brief Handles the specific states events

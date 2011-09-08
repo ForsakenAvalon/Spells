@@ -15,6 +15,8 @@ namespace Core
 
 namespace States
 {
+	//! Contains an element for each state so that states can be easily
+	//! selected throughout the program.
 	enum StateList
 	{
 		MENU = 0,
@@ -26,27 +28,36 @@ namespace States
 
 namespace Core
 {
+	//! \brief Manages all classes inherited from Base::State, defined in
+	//! the StateList enumerator
 	class StateManager
 	{
 	public:
+		//! \brief Constructor
 		StateManager( Core::Window &window );
-		~StateManager();
-		
-		bool Update();
-		bool Events( sf::Event &objEvent );
 
+		//! \brief Deconstructor
+		~StateManager();
+
+		//! \brief Calls the current states Events function
+		bool Events( sf::Event &objEvent );
+		
+		//! \brief Calls the current states Update function
+		bool Update();
+
+		//! \brief Changes the current state to the specified state
 		bool SetState( const States::StateList name );
 
 	private:
+		//! \brief Assess whether a state has been set
+		//! 
+		//! \return Validity of current_state
 		bool CheckCurrent();
-		void Transition();
 
-		std::list<Base::State*> *states;
+		std::list<Base::State*> *states;	//!< Contains all states
+		Base::State *current_state;			//!< Holds the current state
 
-		Base::State *current_state;
-		States::StateList current_type;
-
-		Core::Window &window;
+		Core::Window &window;				//!< Core::Window reference
 	};
 }
 
