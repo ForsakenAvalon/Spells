@@ -2,8 +2,8 @@
 // renderer.h
 // Handles the rendering of all visible game objects.
 
-#ifndef ENGINE_RENDERER_H
-#define ENGINE_RENDERER_H
+#ifndef ENGINE_RENDER_H
+#define ENGINE_RENDER_H
 
 #include <SFML\Graphics.hpp>
 #include "core\window.h"
@@ -20,4 +20,4 @@ namespace Engine
 	};
 }
 
-#endif // ENGINE_RENDERER_H
+#endif // ENGINE_RENDER_H

@@ -1,15 +1,15 @@
 // include/base/entity.h
 // inherits Vector in include/base/vector.h
 
-#ifndef STATIC_ENTITY_BASE_H
-#define STATIC_ENTITY_BASE_H
+#ifndef BASE_STATIC_ENTITY_H
+#define BASE_STATIC_ENTITY_H
 
-#include "vector.h"
+#include "base/vector.h"
 
 namespace Base
 {
 	//! /brief Represents a Static Object
-	class StaticEntity : public Vector<int>
+	/*class StaticEntity : public Vector<int>
 	{
 		public:
 			// Constructor
@@ -22,7 +22,7 @@ namespace Base
 			void			GetPos(int x, int y);
 		protected:
 			int z;
-	};
+	};*/
 }
 
-#endif
+#endif // BASE_STATIC_ENTITY_H

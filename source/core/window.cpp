@@ -8,12 +8,23 @@ namespace Core
 		objWindow.Create(sf::VideoMode(height, width), title, sf::Style::Close);
 		isInit = true;
 		isRunning = false;
+
+		// Testing button class
+		this->button_image = new sf::Image();
+		this->button_image->LoadFromFile("resources/images/button.png");
+		this->button = new GUI::Button(*this->button_image);
+		// End testing button class
 	}
 
 	Window::~Window()
 	{
 		// Close window if still running.
 		this->Exit();
+
+		// Testing button class
+		delete this->button;
+		delete this->button_image;
+		// End testing button class
 	}
 
 	void Window::Run()
@@ -37,7 +48,9 @@ namespace Core
 
 	void Window::Draw()
 	{
-
+		// Testing button class
+		objWindow.Draw(*this->button);
+		// End testing button class
 	}
 
 	// Executes the main loop of the program. You cannot call Loop directly, use Run instead.
@@ -69,6 +82,14 @@ namespace Core
 				break;
 			case sf::Event::Resized :
 				// Resize Code if required
+				break;
+			// Testing button class
+			case sf::Event::MouseButtonPressed:
+				if ( this->button->CheckClicked(objEvent.MouseButton.X, objEvent.MouseButton.Y) )
+					this->Exit();
+
+				break;
+			// End testing button class
 			default :
 				break;
 			}

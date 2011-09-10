@@ -1,13 +1,13 @@
 
-#ifndef SCREEN_BASE_H
-#define SCREEN_BASE_H
+#ifndef BASE_SCREEN_H
+#define BASE_SCREEN_H
 
-#include "static_entity.h"
+#include "base/static_entity.h"
 #include <list>
 
 namespace Base
 {
-	class Screen 
+	/*class Screen 
 	{
 		public:
 			Screen();
@@ -16,7 +16,7 @@ namespace Base
 			bool AddEntity(StaticEntity & entity);
 		private:
 			std::list<StaticEntity> _static;
-	};
+	};*/
 }
 
-#endif
+#endif // BASE_SCREEN_H

@@ -2,7 +2,7 @@
 
 namespace Base
 {
-	StaticEntity::StaticEntity(int x, int y) : Vector(x, y)
+	/*StaticEntity::StaticEntity(int x, int y) : Vector(x, y)
 	{
 		z = 0;
 	}
@@ -20,5 +20,5 @@ namespace Base
 	{
 		x = this->X();
 		y = this->Y();
-	}
+	}*/
 }

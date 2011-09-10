@@ -9,6 +9,10 @@
 #include "utility/string.h"
 #include "base/state.h"
 
+// Testing button class
+#include "gui/button.h"
+// End testing button class
+
 namespace Core
 {
 	class Window 
@@ -35,6 +39,11 @@ namespace Core
 
 			void Loop();
 			virtual void StandardEvents();
+
+			// Testing button class
+			GUI::Button *button;
+			sf::Image *button_image;
+			// End testing button class
 	};
 }
 

@@ -1,5 +1,5 @@
-#ifndef VECTOR_BASE_H
-#define VECTOR_BASE_H
+#ifndef BASE_VECTOR_H
+#define BASE_VECTOR_H
 
 namespace Base
 {
@@ -15,11 +15,11 @@ namespace Base
 
 			Prec X() { return x; }
 			Prec Y() { return y; }
-			Vector & operator[] (Prec iX, Prec iY) 
+			/*Vector & operator[] (Prec iX, Prec iY) 
 			{
 				x = iX;
 				y = iY;
-			}
+			}*/
 			Vector & operator=  (Vector & vector)
 			{
 				x = vector.X;
@@ -31,4 +31,4 @@ namespace Base
 	};
 }
 
-#endif
+#endif // BASE_VECTOR_H
