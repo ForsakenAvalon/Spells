@@ -58,23 +58,22 @@ namespace Utility
 
 	bool File::DoesFileExist(String &stringFileName)
 	{
-		std::ifstream file(stringFileName.ToTextStatic());
+		std::ifstream file(stringFileName);
 		return file;
 	}
 
 	int File::Write(String &stringText)
 	{
-		std::ofstream file(stringText.ToTextStatic(),std::ios_base::app);
+		std::ofstream file(stringText,std::ios_base::app);
 
 		if (!IsWriteBufInit) {
 			WriteBuffer = new String(stringText);
 			IsWriteBufInit = true;
 		}
 		else {
-			WriteBuffer->Copy(stringText);
+			*WriteBuffer = stringText;
 		}
 
-		file.write(WriteBuffer->ToTextStatic(), WriteBuffer->Size());
 
 		file.close();
 

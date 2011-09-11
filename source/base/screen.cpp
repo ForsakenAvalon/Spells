@@ -3,7 +3,7 @@
 
 namespace Base
 {
-	/*Screen::Screen()
+	Screen::Screen()
 	{
 	}
 
@@ -14,5 +14,5 @@ namespace Base
 	bool Screen::AddEntity(StaticEntity & entity)
 	{
 		return true;
-	}*/
+	}
 }

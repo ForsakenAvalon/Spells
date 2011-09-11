@@ -7,7 +7,7 @@
 
 namespace Base
 {
-	/*class Screen 
+	class Screen
 	{
 		public:
 			Screen();
@@ -15,8 +15,7 @@ namespace Base
 
 			bool AddEntity(StaticEntity & entity);
 		private:
-			std::list<StaticEntity> _static;
-	};*/
+	};
 }
 
 #endif // BASE_SCREEN_H

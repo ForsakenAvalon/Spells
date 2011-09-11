@@ -9,7 +9,7 @@
 namespace Base
 {
 	//! /brief Represents a Static Object
-	/*class StaticEntity : public Vector<int>
+	class StaticEntity : public Vector<int>
 	{
 		public:
 			// Constructor
@@ -22,7 +22,7 @@ namespace Base
 			void			GetPos(int x, int y);
 		protected:
 			int z;
-	};*/
+	};
 }
 
 #endif // BASE_STATIC_ENTITY_H
