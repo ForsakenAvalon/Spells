@@ -1,6 +1,8 @@
 
 #include "core/state_manager.h"
 
+#include "base/menu.h"
+
 namespace Core
 {
 	StateManager::StateManager( Core::Window &window )
@@ -8,6 +10,7 @@ namespace Core
 		, window(window)
 	{
 		this->states = new std::list<Base::State*>();
+		this->states->push_back(new Base::Menu(States::MENU, window));
 	}
 
 	StateManager::~StateManager()

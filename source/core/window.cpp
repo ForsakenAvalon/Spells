@@ -26,6 +26,7 @@ namespace Core
 		if (!isRunning)  
 		{
 			isRunning = true;
+			this->state_manager->SetState(States::MENU);
 			this->Loop();
 		}
 	}
