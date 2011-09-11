@@ -8,18 +8,24 @@ namespace Base
 	{
 		public:
 			// Constructors
-			Vector();
-			Vector(Prec x, Prec y);
-			// Deconstructors
-			~Vector();
-
-			Prec X() { return x; }
-			Prec Y() { return y; }
-			/*Vector & operator[] (Prec iX, Prec iY) 
+			Vector()
+			{
+				x = 0;
+				y = 0;
+			}
+			Vector(Prec iX, Prec iY)
 			{
 				x = iX;
 				y = iY;
-			}*/
+			}
+			// Deconstructors
+			~Vector()
+			{
+			}
+
+			Prec X() { return x; }
+			Prec Y() { return y; }
+			
 			Vector & operator=  (Vector & vector)
 			{
 				x = vector.X;

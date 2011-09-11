@@ -5,6 +5,9 @@
 #define Util Utility
 #define uint unsigned int
 
+// Not implemented yet
+#define _MAX_STATIC_TEXT_SIZE_ 
+
 namespace Utility
 {
 	class String
@@ -12,6 +15,7 @@ namespace Utility
 		public:
 			// Constructors
 			String();
+			String(unsigned int size);
 			String(const char * textStatic);
 			String(char * textBuffer);
 			String(String & textString);
@@ -31,7 +35,12 @@ namespace Utility
 			String &    operator=   (const char * textStatic);
 			String &    operator=   (String & textString);
 
+			String &	operator+	(const char * textStatic);
+			String &	operator+	(String & textString);
+
 			const char * ToTextStatic();
+
+			static int GetLength(const char * textStatic);
 
 		private:
 			char    *   CharArray;

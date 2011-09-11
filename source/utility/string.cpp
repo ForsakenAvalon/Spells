@@ -65,19 +65,42 @@ namespace Utility
 		return (CharArray[pointer]);
 	}
 
-	String & String::operator =(const char * textStatic)
+	String & String::operator=(const char * textStatic)
 	{
 		return this->Copy(textStatic);
 	}
 
-	String & String::operator =(String & textString)
+	String & String::operator=(String & textString)
 	{
 		this->Copy(textString);
 		return *this;
 	}
 
+	String & String::operator+(const char * textStatic)
+	{
+		unsigned int textStaticLength = String::GetLength(textStatic);
+		String temp; 
+	}
+
+	String & String::operator+(String & textString)
+	{
+
+	}
+
 	const char * String::ToTextStatic()
 	{
 		return (const_cast<char *> (this->CharArray));
+	}
+
+	int String::GetLength(const char * textStatic)
+	{
+		unsigned int count = 0;
+
+		while (textStatic[count] != '\n') 
+		{
+			count++;
+		}
+
+		return count;
 	}
 }
