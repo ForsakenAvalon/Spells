@@ -5,16 +5,14 @@
 #ifndef CORE_WINDOW_H
 #define CORE_WINDOW_H
 
-#include <SFML/Graphics.hpp>
 #include "utility/string.h"
-#include "base/state.h"
 
-// Testing button class
-#include "gui/button.h"
-// End testing button class
+#include <SFML/Graphics.hpp>
 
 namespace Core
 {
+	class StateManager;
+
 	class Window 
 	{
 		public:
@@ -40,10 +38,7 @@ namespace Core
 			void Loop();
 			virtual void StandardEvents();
 
-			// Testing button class
-			GUI::Button *button;
-			sf::Image *button_image;
-			// End testing button class
+			Core::StateManager *state_manager;
 	};
 }
 
