@@ -1,6 +1,6 @@
 
 #include "core/window.h"
-#include "utility\string.h"
+#include "utility/log.h"
 #include <assert.h>
 #include <iostream>
 
@@ -10,7 +10,7 @@ int main()
 	Core::Window * window;
 	window = new (std::nothrow) Core::Window;
 
-	// Assert if initialization succeded
+	// Assert if initialization succeeded
 	assert(window != NULL && "Cannot create window at main()");
 
 	window->Run();
