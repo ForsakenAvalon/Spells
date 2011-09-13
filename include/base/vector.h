@@ -13,13 +13,6 @@ namespace Base
 
 		~Vector();
 
-		T& x() { return this->x; }
-		T& y() { return this->y; }
-
-		template< typename T >
-		Vector<T>& operator= (const Vector<T> &vector);
-
-	protected:
 		T x;
 		T y;
 	};
