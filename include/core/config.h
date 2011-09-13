@@ -28,8 +28,23 @@ namespace Core
 		Config();
 		~Config();
 
-		void					SetKey( Mapping::Code &mapping_code, sf::Key::Code &key_code );
-		const sf::Key::Code&	GetKey( Mapping::Code &mapping_code );
+		void					SetKey( const Mapping::Code &mapping_code, const sf::Key::Code &key_code );
+		const sf::Key::Code&	GetKey( const Mapping::Code &mapping_code );
+
+        void                                    SetResolution( const unsigned short int &width, const unsigned short int &height );
+        const Base::Vector<unsigned short int>& GetResolution();
+
+		void						SetMusicVolume( const unsigned short int &volume_percent );
+		const unsigned short int&	GetMusicVolume();
+
+		void						SetSoundVolume( const unsigned short int &volume_percent );
+		const unsigned short int&	GetSoundVolume();
+
+		void						SetMouseSensitivity( const unsigned short int &sensitivity_percent );
+		const unsigned short int&	GetMouseSensitivity();
+
+		void		SetMouseInverted( const bool &invert );
+		const bool& GetMouseInverted();
 
 	private:
 		sf::Key::Code keys[Mapping::COUNT];				//!< Holds a keycode for every Key::Code.
