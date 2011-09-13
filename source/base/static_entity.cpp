@@ -2,7 +2,7 @@
 
 namespace Base
 {
-	StaticEntity::StaticEntity(int x, int y) : Vector(x, y)
+	StaticEntity::StaticEntity(int x, int y) : Vector<int>(x, y)
 	{
 		z = 0;
 	}
@@ -11,14 +11,14 @@ namespace Base
 	{
 	}
 
-	Vector<int> & StaticEntity::GetPos()
+	/*Vector<int> & StaticEntity::GetPos()
 	{
 		return *this;
 	}
 
 	void StaticEntity::GetPos(int x, int y)
 	{
-		x = this->X();
-		y = this->Y();
-	}
+		x = this->x;
+		y = this->y;
+	}*/
 }

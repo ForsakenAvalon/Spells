@@ -1,6 +1,12 @@
 
 #include "core/window.h"
 #include "core/state_manager.h"
+#include "core/config.h"
+
+#include "utility/class_parser.h"
+#include "utility/log.h"
+
+#include <iostream>
 
 namespace Core
 {
@@ -9,8 +15,12 @@ namespace Core
 		objWindow.Create(sf::VideoMode(height, width), title, sf::Style::Close);
 		isInit = true;
 		isRunning = false;
+		
+		this->log = new Utility::Log("log.txt");
+		this->class_parser = new Utility::ClassParser();
 
 		this->state_manager = new Core::StateManager(*this);
+		this->config = new Core::Config();
 	}
 
 	Window::~Window()
@@ -18,17 +28,42 @@ namespace Core
 		// Close window if still running.
 		this->Exit();
 
+		// Attempt to write the configuration.
+		if ( !this->class_parser->WriteClass<Core::Config>(this->config, "config.dat") )
+		{
+			this->log->Write("Couldn't save configuration.");
+			this->log->EndLine();
+		}
+		
+		delete this->config;
 		delete this->state_manager;
+		delete this->class_parser;
+		delete this->log;
 	}
 
 	void Window::Run()
 	{
-		if (!isRunning)  
+		if ( isRunning )
+			return;
+
+		// Delete existing configuration.
+		delete this->config;
+
+		// Attempt to load configuration.
+		this->config = this->class_parser->ReadClass<Core::Config>("config.dat");
+
+		// Create a default configuration if no configuration could be loaded.
+		if ( !this->config )
+			this->config = new Core::Config();
+		else
 		{
-			isRunning = true;
-			this->state_manager->SetState(States::MENU);
-			this->Loop();
+			std::cout << "Setting window size to config size." << std::endl;
+			this->objWindow.SetSize(this->config->GetResolution().x, this->config->GetResolution().y);
 		}
+
+		isRunning = true;
+		this->state_manager->SetState(States::MENU);
+		this->Loop();
 	}
 
 	void Window::Clear()
@@ -76,6 +111,19 @@ namespace Core
 				break;
 			case sf::Event::Resized:
 				// Resize Code if required
+				break;
+			case sf::Event::KeyPressed:
+				if ( objEvent.Key.Code == sf::Key::A )
+				{
+					this->config->SetResolution(this->config->GetResolution().x + 50, this->config->GetResolution().y + 50);
+					std::cout << "Incremented config resolution by 50." << std::endl;
+				}
+				else if ( objEvent.Key.Code == sf::Key::D )
+				{
+					this->config->SetResolution(this->config->GetResolution().x - 50, this->config->GetResolution().y - 50);
+					std::cout << "Decremented config resolution by 50." << std::endl;
+				}
+
 				break;
 			default :
 				break;

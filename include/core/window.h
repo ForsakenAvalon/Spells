@@ -9,9 +9,16 @@
 
 #include <SFML/Graphics.hpp>
 
+namespace Utility
+{
+	class ClassParser;
+	class Log;
+}
+
 namespace Core
 {
 	class StateManager;
+	class Config;
 
 	class Window 
 	{
@@ -41,6 +48,10 @@ namespace Core
 			virtual void StandardEvents();
 
 			Core::StateManager *state_manager;
+			Core::Config *config;
+
+			Utility::ClassParser *class_parser;
+			Utility::Log *log;
 	};
 }
 

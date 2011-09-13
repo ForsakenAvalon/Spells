@@ -18,8 +18,8 @@ namespace Base
 			~StaticEntity();
 
 			// Member Functions
-			Vector<int> &	GetPos();
-			void			GetPos(int x, int y);
+			//Vector<int> &	GetPos();
+			//void			GetPos(int x, int y);
 		protected:
 			int z;
 	};

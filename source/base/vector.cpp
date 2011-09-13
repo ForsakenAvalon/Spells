@@ -18,11 +18,4 @@ namespace Base
 	{
 
 	}
-
-	template< typename T >
-	inline Vector<T>& Vector<T>::operator= ( const Vector<T> &vector )
-	{
-		this->x = vector.x;
-		this->y = vector.y;
-	}
 }
