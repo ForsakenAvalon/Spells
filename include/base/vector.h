@@ -25,6 +25,9 @@ namespace Base
 
 			Prec X() { return x; }
 			Prec Y() { return y; }
+
+            Prec x() { return x; }
+            Prec y() { return y; }
 			
 			Vector & operator=  (Vector & vector)
 			{
