@@ -10,33 +10,35 @@ namespace Base
 			// Constructors
 			Vector()
 			{
-				x = 0;
-				y = 0;
+				local_x = 0;
+				local_y = 0;
 			}
-			Vector(Prec iX, Prec iY)
+			Vector(Prec x, Prec y)
 			{
-				x = iX;
-				y = iY;
+				local_x = x;
+				local_y = y;
 			}
 			// Deconstructors
 			~Vector()
 			{
+
 			}
 
-			Prec X() { return x; }
-			Prec Y() { return y; }
+			Prec X() { return local_x; }
+			Prec Y() { return local_y; }
 
-            Prec x() { return x; }
-            Prec y() { return y; }
+            Prec x() { return local_x; }
+            Prec y() { return local_y; }
 			
 			Vector & operator=  (Vector & vector)
 			{
-				x = vector.X;
-				y = vector.Y;
+				local_x = vector.X;
+				local_y = vector.Y;
 			}
+
 		protected:
-			Prec x;
-			Prec y;
+			Prec local_x;
+			Prec local_y;
 	};
 }
 
