@@ -5,18 +5,31 @@
 #ifndef ENGINE_RENDER_H
 #define ENGINE_RENDER_H
 
-#include <SFML\Graphics.hpp>
-#include "core\window.h"
+#include <SFML/Graphics/Sprite.hpp>
+
+namespace Core
+{
+	class Window;
+}
+
+namespace GUI
+{
+	class Button;
+}
 
 namespace Engine
 {
 	class Render
 	{
 		public:
-			Render(Core::Window & attachWindow);
+			Render( Core::Window &window );
 			~Render();
+
+			void RenderSprite( sf::Sprite &sprite );
+			void RenderButton( GUI::Button &button );
+
 		private:
-			Core::Window * objWindow;
+			Core::Window &window;
 	};
 }
 
