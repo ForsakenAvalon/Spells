@@ -11,7 +11,7 @@ namespace Core
 		, mouse_inverted(false)
 	{
 		// By default we set all the keys to Count, which is not a key.
-		for ( unsigned short int i = 0; i < Action::COUNT; i++ )
+		for ( unsigned short int i = 0; i < Mapping::COUNT; i++ )
 			this->keys[i] = sf::Key::Count;
 	}
 
@@ -20,13 +20,13 @@ namespace Core
 
 	}
 
-	const sf::Key::Code& Config::GetKey( Action::Code &action_code )
+	const sf::Key::Code& Config::GetKey( Mapping::Code &mapping_code )
 	{
-		return this->keys[action_code];
+		return this->keys[mapping_code];
 	}
 
-	void Config::SetKey( Action::Code &action_code, sf::Key::Code &key_code )
+	void Config::SetKey( Mapping::Code &mapping_code, sf::Key::Code &key_code )
 	{
-		this->keys[action_code] = key_code;
+		this->keys[mapping_code] = key_code;
 	}
 }

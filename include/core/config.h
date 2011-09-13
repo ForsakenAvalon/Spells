@@ -8,7 +8,7 @@
 
 namespace Core
 {
-	namespace Action
+	namespace Mapping
 	{
 		//! Contains all of the games possible input actions.
 		enum Code
@@ -28,11 +28,11 @@ namespace Core
 		Config();
 		~Config();
 
-		void					SetKey( Action::Code &action_code, sf::Key::Code &key_code );
-		const sf::Key::Code&	GetKey( Action::Code &action_code );
+		void					SetKey( Mapping::Code &mapping_code, sf::Key::Code &key_code );
+		const sf::Key::Code&	GetKey( Mapping::Code &mapping_code );
 
 	private:
-		sf::Key::Code keys[Action::COUNT];				//!< Holds a keycode for every Key::Code.
+		sf::Key::Code keys[Mapping::COUNT];				//!< Holds a keycode for every Key::Code.
 
 		Base::Vector<unsigned short int> resolution;	//!< Game resolution, width/height.
 
