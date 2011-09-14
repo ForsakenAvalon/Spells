@@ -23,12 +23,12 @@ namespace Core
 	// 
 	// Keys
 	// 
-	inline void Config::SetKey( const Mapping::Code &mapping_code, const sf::Key::Code &key_code )
+	void Config::SetKey( const Mapping::Code &mapping_code, const sf::Key::Code &key_code )
 	{
 		this->keys[mapping_code] = key_code;
 	}
 	
-	inline const sf::Key::Code& Config::GetKey( const Mapping::Code &mapping_code )
+	const sf::Key::Code& Config::GetKey( const Mapping::Code &mapping_code )
 	{
 		return this->keys[mapping_code];
 	}
@@ -50,12 +50,12 @@ namespace Core
 	// 
 	// Music Volume
 	// 
-	inline void Config::SetMusicVolume( const unsigned short int &volume_percent )
+	void Config::SetMusicVolume( const unsigned short int &volume_percent )
 	{
 		this->volume_music = volume_percent;
 	}
 
-	inline const unsigned short int& Config::GetMusicVolume()
+	const unsigned short int& Config::GetMusicVolume()
 	{
 		return this->volume_music;
 	}
@@ -63,12 +63,12 @@ namespace Core
 	// 
 	// Sound Volume
 	// 
-	inline void Config::SetSoundVolume( const unsigned short int &volume_percent )
+	void Config::SetSoundVolume( const unsigned short int &volume_percent )
 	{
 		this->volume_sound = volume_percent;
 	}
 
-	inline const unsigned short int& Config::GetSoundVolume()
+	const unsigned short int& Config::GetSoundVolume()
 	{
 		return this->volume_sound;
 	}
@@ -76,12 +76,12 @@ namespace Core
 	// 
 	// Mouse Sensitivity
 	// 
-	inline void Config::SetMouseSensitivity( const unsigned short int &sensitivity_percent )
+	void Config::SetMouseSensitivity( const unsigned short int &sensitivity_percent )
 	{
 		this->mouse_sensitivity = sensitivity_percent;
 	}
 
-	inline const unsigned short int& Config::GetMouseSensitivity()
+	const unsigned short int& Config::GetMouseSensitivity()
 	{
 		return this->mouse_sensitivity;
 	}
@@ -89,12 +89,12 @@ namespace Core
 	// 
 	// Mouse Inverted
 	// 
-	inline void Config::SetMouseInverted( const bool &invert )
+	void Config::SetMouseInverted( const bool &invert )
 	{
 		this->mouse_inverted = invert;
 	}
 
-	inline const bool& Config::GetMouseInverted()
+	const bool& Config::GetMouseInverted()
 	{
 		return this->mouse_inverted;
 	}
