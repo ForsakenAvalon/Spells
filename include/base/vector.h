@@ -10,14 +10,14 @@ namespace Base
 	public:
 		Vector()
 		{
-			local_x = 0;
-			local_y = 0;
+			this->x = 0;
+			this->y = 0;
 		}
 
 		Vector( T x, T y )
 		{
-			local_x = x;
-			local_y = y;
+			this->x = x;
+			this->y = y;
 		}
 
 		~Vector()
@@ -25,8 +25,8 @@ namespace Base
 
 		}
 
-		T local_x;
-		T local_y;
+		T x;
+		T y;
 	};
 }
 

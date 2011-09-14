@@ -7,6 +7,8 @@ namespace Base
 {
 	Menu::Menu( const States::StateList state, Core::Window &window )
 		: State(state, window)
+		, window(window)
+		, options_menu_selected(false)
 	{
 
 	}
@@ -18,18 +20,17 @@ namespace Base
 
 	void Menu::Events( sf::Event &objEvent )
 	{
-		//if ( objEvent.Type == sf::Event::MouseButtonPressed )
-		//	std::cout << objEvent.MouseButton.X << ", " << objEvent.MouseButton.Y << std::endl;
+		
 	}
 
 	void Menu::Update()
 	{
-		//std::cout << "Draw loop!" << std::endl;
+		
 	}
 
 	void Menu::TransitionEnter()
 	{
-
+		this->options_menu_selected = false;
 	}
 
 	void Menu::TransitionExit()

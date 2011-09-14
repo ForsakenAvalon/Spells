@@ -4,6 +4,11 @@
 
 #include "base/state.h"
 
+namespace Core
+{
+	class Window;
+}
+
 namespace Base
 {
 	class Menu : public State
@@ -17,6 +22,11 @@ namespace Base
 
 		void TransitionEnter();
 		void TransitionExit();
+
+	private:
+		Core::Window &window;
+
+		bool options_menu_selected;
 	};
 }
 

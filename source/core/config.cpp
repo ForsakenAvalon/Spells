@@ -38,8 +38,8 @@ namespace Core
 	// 
 	void Config::SetResolution( const unsigned short int &width, const unsigned short int &height )
 	{
-		this->resolution.local_x = width;
-		this->resolution.local_y = height;
+		this->resolution.x = width;
+		this->resolution.y = height;
 	}
 	
 	const Base::Vector<unsigned short int>& Config::GetResolution()
