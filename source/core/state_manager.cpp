@@ -42,7 +42,7 @@ namespace Core
 		return true;
 	}
 
-	bool StateManager::SetState( const States::StateList name )
+	bool StateManager::SetState( const StateType::List name )
 	{
 		for ( std::list<Base::State*>::iterator iter = this->states->begin(); iter != this->states->end(); iter++ )
 		{

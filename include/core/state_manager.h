@@ -13,11 +13,11 @@ namespace Core
 	class Window;
 }
 
-namespace States
+namespace StateType
 {
 	//! Contains an element for each state so that states can be easily
 	//! selected throughout the program.
-	enum StateList
+	enum List
 	{
 		MENU = 0,
 		GAME,
@@ -46,7 +46,7 @@ namespace Core
 		bool Update();
 
 		//! \brief Changes the current state to the specified state
-		bool SetState( const States::StateList name );
+		bool SetState( const StateType::List name );
 
 	private:
 		//! \brief Assess whether a state has been set
