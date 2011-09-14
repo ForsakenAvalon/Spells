@@ -36,13 +36,13 @@ namespace Core
 	// 
 	// Resolution
 	// 
-	inline void Config::SetResolution( const unsigned short int &width, const unsigned short int &height )
+	void Config::SetResolution( const unsigned short int &width, const unsigned short int &height )
 	{
-		this->resolution.x = width;
-		this->resolution.y = height;
+		this->resolution.local_x = width;
+		this->resolution.local_y = height;
 	}
 	
-	inline const Base::Vector<unsigned short int>& Config::GetResolution()
+	const Base::Vector<unsigned short int>& Config::GetResolution()
 	{
 		return this->resolution;
 	}

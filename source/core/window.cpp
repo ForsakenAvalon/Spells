@@ -57,8 +57,8 @@ namespace Core
 			this->config = new Core::Config();
 		else
 		{
-			std::cout << "Setting window size to config size." << std::endl;
-			this->objWindow.SetSize(this->config->GetResolution().x, this->config->GetResolution().y);
+			std::cout << "Setting window size to config size: " << this->config->GetResolution().local_x << ", " << this->config->GetResolution().local_y << std::endl;
+			this->objWindow.SetSize(this->config->GetResolution().local_x, this->config->GetResolution().local_y);
 		}
 
 		isRunning = true;
@@ -115,13 +115,13 @@ namespace Core
 			case sf::Event::KeyPressed:
 				if ( objEvent.Key.Code == sf::Key::A )
 				{
-					this->config->SetResolution(this->config->GetResolution().x + 50, this->config->GetResolution().y + 50);
-					std::cout << "Incremented config resolution by 50." << std::endl;
+					this->config->SetResolution(this->config->GetResolution().local_x + 50, this->config->GetResolution().local_y + 50);
+					std::cout << "Incremented config resolution by 50, now = " << this->config->GetResolution().local_x << ", " << this->config->GetResolution().local_y << std::endl;
 				}
 				else if ( objEvent.Key.Code == sf::Key::D )
 				{
-					this->config->SetResolution(this->config->GetResolution().x - 50, this->config->GetResolution().y - 50);
-					std::cout << "Decremented config resolution by 50." << std::endl;
+					this->config->SetResolution(this->config->GetResolution().local_x - 50, this->config->GetResolution().local_y - 50);
+					std::cout << "Decremented config resolution by 50, now = " << this->config->GetResolution().local_x << ", " << this->config->GetResolution().local_y << std::endl;
 				}
 
 				break;
