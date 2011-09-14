@@ -8,13 +8,25 @@ namespace Base
 	class Vector
 	{
 	public:
-		Vector();
-		Vector( T x, T y );
+		Vector()
+		{
+			local_x = 0;
+			local_y = 0;
+		}
 
-		~Vector();
+		Vector( T x, T y )
+		{
+			local_x = x;
+			local_y = y;
+		}
 
-		T x;
-		T y;
+		~Vector()
+		{
+
+		}
+
+		T local_x;
+		T local_y;
 	};
 }
 
