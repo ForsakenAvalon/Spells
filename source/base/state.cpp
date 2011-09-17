@@ -3,7 +3,7 @@
 
 namespace Base
 {
-	State::State( States::StateList state, Core::Window &window )
+	State::State( StateType::List state, Core::Window &window )
 		: my_state(state)
 		, window(window)
 	{

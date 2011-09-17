@@ -5,7 +5,7 @@
 
 namespace Base
 {
-	Menu::Menu( const States::StateList state, Core::Window &window )
+	Menu::Menu( const StateType::List state, Core::Window &window )
 		: State(state, window)
 		, window(window)
 		, options_menu_selected(false)

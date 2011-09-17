@@ -9,9 +9,9 @@ namespace Core
 	class Window;
 }
 
-namespace States
+namespace StateType
 {
-	enum StateList;
+	enum List;
 }
 
 namespace Base
@@ -21,7 +21,7 @@ namespace Base
 	{
 	public:
 		//! \brief Constructor
-		State( const States::StateList state, Core::Window &window );
+		State( const StateType::List state, Core::Window &window );
 
 		//! \brief Deconstructor
 		virtual ~State();
@@ -50,10 +50,10 @@ namespace Base
 		//! \brief Returns the states name from the StateList enum
 		//! 
 		//! \see States::StateList
-		States::StateList GetState() { return this->my_state; }
+		StateType::List GetState() { return this->my_state; }
 
 	protected:
-		States::StateList my_state; //!< States::StateList enumeration of this state
+		StateType::List my_state; //!< States::StateList enumeration of this state
 		Core::Window &window;		//!< Reference to Core::Window
 	};
 }

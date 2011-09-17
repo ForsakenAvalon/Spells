@@ -10,7 +10,7 @@ namespace Core
 		, window(window)
 	{
 		this->states = new std::list<Base::State*>();
-		this->states->push_back(new Base::Menu(States::MENU, window));
+		this->states->push_back(new Base::Menu(StateType::MENU, window));
 	}
 
 	StateManager::~StateManager()

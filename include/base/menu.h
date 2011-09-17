@@ -14,7 +14,7 @@ namespace Base
 	class Menu : public State
 	{
 	public:
-		Menu( const States::StateList state, Core::Window &window );
+		Menu( const StateType::List state, Core::Window &window );
 		~Menu();
 
 		void Events( sf::Event &objEvent );

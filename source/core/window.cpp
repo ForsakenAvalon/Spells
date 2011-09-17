@@ -62,7 +62,7 @@ namespace Core
 		}
 
 		isRunning = true;
-		this->state_manager->SetState(States::MENU);
+		this->state_manager->SetState(StateType::MENU);
 		this->Loop();
 	}
 
@@ -122,6 +122,11 @@ namespace Core
 				{
 					this->config->SetResolution(this->config->GetResolution().x - 50, this->config->GetResolution().y - 50);
 					std::cout << "Decremented config resolution by 50, now = " << this->config->GetResolution().x << ", " << this->config->GetResolution().y << std::endl;
+				}
+				else if ( objEvent.Key.Code == sf::Key::Escape )
+				{
+					this->objWindow.Create(sf::VideoMode(1024, 800), "new title", sf::Style::Close);
+					std::cout << "Increased resolution." << std::endl;
 				}
 
 				break;
