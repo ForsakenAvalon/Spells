@@ -6,6 +6,10 @@
 #include "utility/class_parser.h"
 #include "utility/log.h"
 
+// Action bar test code
+#include "gui/action_bar.h"
+// End action bar test code
+
 #include <iostream>
 
 namespace Core
@@ -16,11 +20,34 @@ namespace Core
 		isInit = true;
 		isRunning = false;
 		
+		this->resource_manager = new Utility::ResourceManager();
 		this->log = new Utility::Log("log.txt");
 		this->class_parser = new Utility::ClassParser();
 
 		this->state_manager = new Core::StateManager(*this);
-		this->config = new Core::Config();
+
+		// Attempt to load configuration.
+		this->config = this->class_parser->ReadClass<Core::Config>("config.dat");
+
+		// Create a default configuration if no configuration could be loaded.
+		if ( !this->config )
+			this->config = new Core::Config();
+		else
+		{
+			std::cout << "Setting window size to config size: " << this->config->GetResolution().x << ", " << this->config->GetResolution().y << std::endl;
+			this->objWindow.SetSize(this->config->GetResolution().x, this->config->GetResolution().y);
+		}
+		// End creating/loading configuration.
+
+		// Action bar test code
+		this->action_bar = new GUI::ActionBar(this->objWindow, *this->config, *this->resource_manager);
+		// End action bar test code
+
+		// Debug code
+		this->image_1 = new sf::Image();
+		this->image_1->LoadFromFile("resources/images/button.png");
+		this->sprite_1 = new sf::Sprite(*this->image_1);
+		// End debug code
 	}
 
 	Window::~Window()
@@ -35,31 +62,27 @@ namespace Core
 			this->log->EndLine();
 		}
 		
-		delete this->config;
+		// Action bar test code
+		delete this->action_bar;
+		// End action bar test code
+
 		delete this->state_manager;
+		delete this->config;
 		delete this->class_parser;
 		delete this->log;
+
+		delete this->resource_manager;
+
+		// Debug code
+		delete this->sprite_1;
+		delete this->image_1;
+		// End debug code
 	}
 
 	void Window::Run()
 	{
 		if ( isRunning )
 			return;
-
-		// Delete existing configuration.
-		delete this->config;
-
-		// Attempt to load configuration.
-		this->config = this->class_parser->ReadClass<Core::Config>("config.dat");
-
-		// Create a default configuration if no configuration could be loaded.
-		if ( !this->config )
-			this->config = new Core::Config();
-		else
-		{
-			std::cout << "Setting window size to config size: " << this->config->GetResolution().x << ", " << this->config->GetResolution().y << std::endl;
-			this->objWindow.SetSize(this->config->GetResolution().x, this->config->GetResolution().y);
-		}
 
 		isRunning = true;
 		this->state_manager->SetState(StateType::MENU);
@@ -78,7 +101,14 @@ namespace Core
 
 	void Window::Draw()
 	{
+		// Action bar test code
+		this->action_bar->Update();
+		//this->objWindow.Draw(this->action_bar->GetActionBar());
+		// End action bar test code
 		this->state_manager->Update();
+		// Debug code
+		this->objWindow.Draw(*this->sprite_1);
+		// End debug code
 	}
 
 	// Executes the main loop of the program. You cannot call Loop directly, use Run instead.
@@ -125,8 +155,19 @@ namespace Core
 				}
 				else if ( objEvent.Key.Code == sf::Key::Escape )
 				{
-					this->objWindow.Create(sf::VideoMode(1024, 800), "new title", sf::Style::Close);
-					std::cout << "Increased resolution." << std::endl;
+					if ( this->config->GetResolution().x != 1024 || this->config->GetResolution().y != 800 )
+					{
+						this->objWindow.Create(sf::VideoMode(1024, 800), "new title", sf::Style::Close);
+						std::cout << "Setting config resultion to 1024, 800" << std::endl;
+						this->config->SetResolution(1024, 800);
+					}
+					else
+					{
+						this->objWindow.Create(sf::VideoMode(800, 600), "new title", sf::Style::Close);
+						std::cout << "Setting config resultion to 800, 600" << std::endl;
+						this->config->SetResolution(800, 600);
+					}
+					std::cout << "Config resolution: " << this->config->GetResolution().x << ", " << this->config->GetResolution().y << std::endl;
 				}
 
 				break;

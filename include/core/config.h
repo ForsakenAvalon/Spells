@@ -31,7 +31,7 @@ namespace Core
 		void					SetKey( const Mapping::Code &mapping_code, const sf::Key::Code &key_code );
 		const sf::Key::Code&	GetKey( const Mapping::Code &mapping_code );
 
-        void									SetResolution( const unsigned short int &width, const unsigned short int &height );
+        void									SetResolution( const unsigned short int width, const unsigned short int height );
         const Base::Vector<unsigned short int>&	GetResolution();
 
 		void						SetMusicVolume( const unsigned short int &volume_percent );

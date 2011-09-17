@@ -13,6 +13,12 @@ namespace Utility
 {
 	class ClassParser;
 	class Log;
+	class ResourceManager;
+}
+
+namespace GUI
+{
+	class ActionBar;
 }
 
 namespace Core
@@ -35,7 +41,7 @@ namespace Core
 			bool IsRunning();
 			bool IsInit();
 
-			sf::RenderWindow& RenderWindow() { return objWindow; }
+			sf::RenderWindow&	RenderWindow()	{ return objWindow; }
 
 		private:
 			sf::RenderWindow objWindow;
@@ -52,6 +58,16 @@ namespace Core
 
 			Utility::ClassParser *class_parser;
 			Utility::Log *log;
+			Utility::ResourceManager *resource_manager;
+
+			// Action bar test code
+			GUI::ActionBar *action_bar;
+			// End action bar test code
+
+			// Debug code
+			sf::Sprite *sprite_1;
+			sf::Image *image_1;
+			// End debug code
 	};
 }
 

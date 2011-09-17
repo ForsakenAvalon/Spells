@@ -3,6 +3,12 @@
 
 namespace GUI
 {
+	Button::Button()
+		: sf::Sprite()
+	{
+
+	}
+
 	Button::Button( const sf::Image &image )
 		: sf::Sprite(image)
 	{
@@ -14,7 +20,7 @@ namespace GUI
 
 	}
 
-	bool Button::CheckClicked( int mouse_x, int mouse_y )
+	bool Button::CheckClicked( const int mouse_x, const int mouse_y )
 	{
 		int x_pos = (int) this->GetPosition().x;
 		int y_pos = (int) this->GetPosition().y;

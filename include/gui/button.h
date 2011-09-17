@@ -10,10 +10,12 @@ namespace GUI
 	class Button : public sf::Sprite
 	{
 	public:
+		Button();
 		Button( const sf::Image &image );
+
 		~Button();
 
-		bool CheckClicked( int x, int y );
+		bool CheckClicked( const int mouse_x, const int mouse_y );
 	};
 }
 
