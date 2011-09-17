@@ -41,7 +41,7 @@ namespace Core
 			bool IsRunning();
 			bool IsInit();
 
-			sf::RenderWindow&	RenderWindow()	{ return objWindow; }
+			sf::RenderWindow& RenderWindow()	{ return objWindow; }
 
 		private:
 			sf::RenderWindow objWindow;
