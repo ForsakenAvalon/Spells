@@ -7,8 +7,8 @@
 int main()
 {
 	// Initialize Game Window
-	Core::Window * window;
-	window = new (std::nothrow) Core::Window;
+	Core::Window *window;
+	window = new (std::nothrow) Core::Window();
 
 	// Assert if initialization succeeded
 	assert(window != NULL && "Cannot create window at main()");

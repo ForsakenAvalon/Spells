@@ -31,12 +31,12 @@ namespace GUI
 	private:
 		void Draw();
 
-		sf::RenderWindow &window;
-		Core::Config &config;
-		Utility::ResourceManager &resource_manager;
+		sf::RenderWindow &window;					//!< Reference to sf::RenderWindow.
+		Core::Config &config;						//!< Reference to Config.
+		Utility::ResourceManager &resource_manager;	//!< Reference to ResourceManager.
 
-		GUI::Button		**buttons;
-		sf::Sprite		*actionbar;
+		GUI::Button		**buttons;	//!< Holds a button for each button on the action bar.
+		sf::Sprite		*actionbar;	//!< Holds the action bar's sprite.
 
 		std::string *filename;	//!< Holds the filename of the image for this actionbar.
 

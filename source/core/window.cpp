@@ -14,18 +14,8 @@
 
 namespace Core
 {
-	Window::Window(unsigned int height /* = 800 */, unsigned int width /* =600 */, const char * title /* = "Unnamed" */)
+	Window::Window( const char *title /* = "Unnamed" */ )
 	{
-		objWindow.Create(sf::VideoMode(height, width), title, sf::Style::Close);
-		isInit = true;
-		isRunning = false;
-		
-		this->resource_manager = new Utility::ResourceManager();
-		this->log = new Utility::Log("log.txt");
-		this->class_parser = new Utility::ClassParser();
-
-		this->state_manager = new Core::StateManager(*this);
-
 		// Attempt to load configuration.
 		this->config = this->class_parser->ReadClass<Core::Config>("config.dat");
 
@@ -36,8 +26,19 @@ namespace Core
 		{
 			std::cout << "Setting window size to config size: " << this->config->GetResolution().x << ", " << this->config->GetResolution().y << std::endl;
 			this->objWindow.SetSize(this->config->GetResolution().x, this->config->GetResolution().y);
+			std::cout << "Config window size: " << this->config->GetResolution().x << ", " << this->config->GetResolution().y << std::endl;
 		}
 		// End creating/loading configuration.
+
+		objWindow.Create(sf::VideoMode(this->config->GetResolution().x, this->config->GetResolution().y), title, sf::Style::Close);
+		isInit = true;
+		isRunning = false;
+		
+		this->resource_manager = new Utility::ResourceManager();
+		this->log = new Utility::Log("log.txt");
+		this->class_parser = new Utility::ClassParser();
+
+		this->state_manager = new Core::StateManager(*this);
 
 		// Action bar test code
 		this->action_bar = new GUI::ActionBar(this->objWindow, *this->config, *this->resource_manager, "actionbar.PNG");

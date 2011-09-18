@@ -27,7 +27,7 @@ namespace Core
 	class Window 
 	{
 		public:
-			Window(unsigned int width = 800, unsigned int height = 600, const char * title = "Unnamed");
+			Window( const char *title = "Unnamed" );
 			~Window();
 
 			void Run();
