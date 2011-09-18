@@ -40,7 +40,7 @@ namespace Core
 		// End creating/loading configuration.
 
 		// Action bar test code
-		this->action_bar = new GUI::ActionBar(this->objWindow, *this->config, *this->resource_manager);
+		this->action_bar = new GUI::ActionBar(this->objWindow, *this->config, *this->resource_manager, "actionbar.PNG");
 		// End action bar test code
 
 		// Debug code

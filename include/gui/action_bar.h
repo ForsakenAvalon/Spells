@@ -5,6 +5,8 @@
 #include "gui/button.h"
 #include "utility/resource_manager.h"
 
+#include <string>
+
 namespace sf
 {
 	class RenderWindow;
@@ -21,7 +23,7 @@ namespace GUI
 	class ActionBar
 	{
 	public:
-		ActionBar( sf::RenderWindow &window, Core::Config &config, Utility::ResourceManager &resource_manager );
+		ActionBar( sf::RenderWindow &window, Core::Config &config, Utility::ResourceManager &resource_manager, const std::string &filename );
 		~ActionBar();
 
 		void Update();
@@ -35,6 +37,8 @@ namespace GUI
 
 		GUI::Button		**buttons;
 		sf::Sprite		*actionbar;
+
+		std::string *filename;	//!< Holds the filename of the image for this actionbar.
 
 		unsigned short int *last_res_width;		//!< Holds the last resolution used to position the action bar.
 		unsigned short int *last_res_height;	//!< Holds the last resolution used to position the action bar.

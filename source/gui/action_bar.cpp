@@ -6,15 +6,17 @@
 
 namespace GUI
 {
-	ActionBar::ActionBar( sf::RenderWindow &window, Core::Config &config, Utility::ResourceManager &resource_manager )
+	ActionBar::ActionBar( sf::RenderWindow &window, Core::Config &config, Utility::ResourceManager &resource_manager, const std::string &filename )
 		: window(window)
 		, config(config)
 		, resource_manager(resource_manager)
 	{
+		this->filename = new std::string(filename);
+
 		this->position_x = new float();
 		this->position_y = new float();
 
-		this->actionbar = new sf::Sprite(*this->resource_manager.GetResource<sf::Image>("actionbar.PNG"));
+		this->actionbar = new sf::Sprite(*this->resource_manager.GetResource<sf::Image>(*this->filename));
 		this->buttons = new GUI::Button*[11];
 
 		for ( int x = 0; x < 11; x++ )
@@ -34,13 +36,15 @@ namespace GUI
 
 		delete this->buttons;
 		delete this->actionbar;
-		this->resource_manager.KillResource("actionbar.PNG");
+		this->resource_manager.KillResource(*this->filename);
 
 		delete this->last_res_width;
 		delete this->last_res_height;
 
 		delete this->position_x;
 		delete this->position_y;
+
+		delete this->filename;
 	}
 
 	void ActionBar::Update()
