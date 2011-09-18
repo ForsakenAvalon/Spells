@@ -7,7 +7,7 @@
 
 namespace GUI
 {
-	ActionBar::ActionBar( const Core::GUIManager &gui_manager, const std::string &filename /* = "" */ )
+	ActionBar::ActionBar( const Core::GUIManager &gui_manager, const std::string &filename /* = "error.png" */ )
 		: GUI::Base(gui_manager, filename)
 	{
 		this->buttons = new GUI::Button*[11];

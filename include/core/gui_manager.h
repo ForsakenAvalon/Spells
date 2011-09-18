@@ -39,6 +39,8 @@ namespace Core
 		friend class GUI::Button;
 		friend class GUI::ActionBar;
 
+		void UpdateElements( const float &old_resolution_x, const float &old_resolution_y );
+
 		GUI::Button&	Button( const std::string &name, const std::string &filename = "" );
 		GUI::ActionBar& ActionBar( const std::string &name, const std::string &filename = "" );
 

@@ -37,13 +37,15 @@ namespace Core
 		isRunning = false;
 		
 		this->resource_manager = new Utility::ResourceManager();
-		this->log = new Utility::Log("log.txt");
+		this->log = new Utility::Log("window.txt");
 		this->class_parser = new Utility::ClassParser();
 
 		this->state_manager = new Core::StateManager(*this);
 
 		// Action bar test code
 		this->gui_manager = new Core::GUIManager(this->objWindow, *this->config, *this->resource_manager);
+		this->gui_manager->ActionBar("testbar", "actionbar.PNG").SetPosition((float) ((this->objWindow.GetWidth() - 502) / 2),
+			(float) (this->objWindow.GetHeight() - 45));
 		//this->gui_manager->ActionBar("testbar", "actionbar.PNG");
 		//this->action_bar = new GUI::ActionBar(this->objWindow, *this->config, *this->resource_manager, "actionbar.PNG");
 		// End action bar test code
@@ -99,6 +101,7 @@ namespace Core
 		// Action bar test code
 		//this->action_bar->Update();
 		//this->gui_manager->ActionBar("testbar").Update();
+		this->gui_manager->ActionBar("testbar").Draw();
 		//this->objWindow.Draw(this->action_bar->GetActionBar());
 		// End action bar test code
 
@@ -144,12 +147,14 @@ namespace Core
 						this->objWindow.Create(sf::VideoMode(1024, 800), "new title", sf::Style::Close);
 						std::cout << "Setting config resultion to 1024, 800" << std::endl;
 						this->config->SetResolution(1024, 800);
+						this->gui_manager->UpdateElements(800, 600);
 					}
 					else
 					{
 						this->objWindow.Create(sf::VideoMode(800, 600), "new title", sf::Style::Close);
 						std::cout << "Setting config resultion to 800, 600" << std::endl;
 						this->config->SetResolution(800, 600);
+						this->gui_manager->UpdateElements(1024, 800);
 					}
 					std::cout << "Config resolution: " << this->config->GetResolution().x << ", " << this->config->GetResolution().y << std::endl;
 				}

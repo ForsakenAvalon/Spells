@@ -5,7 +5,7 @@
 
 namespace GUI
 {
-	Button::Button( const Core::GUIManager &gui_manager, const std::string &filename /* = "" */ )
+	Button::Button( const Core::GUIManager &gui_manager, const std::string &filename /* = "error.png" */ )
 		: GUI::Base(gui_manager, filename)
 	{
 		this->hover = new bool();

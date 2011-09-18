@@ -9,7 +9,7 @@ namespace GUI
 	class ActionBar : public GUI::Base
 	{
 	public:
-		ActionBar( const Core::GUIManager &gui_manager, const std::string &filename = "" );
+		ActionBar( const Core::GUIManager &gui_manager, const std::string &filename = "error.png" );
 		~ActionBar();
 
 		void Draw();

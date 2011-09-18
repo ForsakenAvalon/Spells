@@ -11,7 +11,7 @@ namespace GUI
 	class Button : public GUI::Base
 	{
 	public:
-		Button( const Core::GUIManager &gui_manager, const std::string &filename = "" );
+		Button( const Core::GUIManager &gui_manager, const std::string &filename = "error.png" );
 		~Button();
 
 		void Draw();

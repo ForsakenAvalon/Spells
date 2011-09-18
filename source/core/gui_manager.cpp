@@ -34,6 +34,15 @@ namespace Core
 		}
 	}
 
+	void GUIManager::UpdateElements( const float &old_resolution_x, const float &old_resolution_y )
+	{
+		for ( ButtonMap::const_iterator iter = this->buttons.begin(); iter != this->buttons.end(); iter++ )
+			iter->second->Update(old_resolution_x, old_resolution_y);
+
+		for ( ActionBarMap::const_iterator iter = this->actionbars.begin(); iter != this->actionbars.end(); iter++ )
+			iter->second->Update(old_resolution_x, old_resolution_y);
+	}
+
 	GUI::Button& GUIManager::Button( const std::string &name, const std::string &filename /* = "" */ )
 	{
 		ButtonMap::const_iterator iter = this->buttons.find(name);

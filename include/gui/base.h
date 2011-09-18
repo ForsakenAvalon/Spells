@@ -14,11 +14,11 @@ namespace GUI
 	class Base : public sf::Sprite
 	{
 	public:
-		Base( const Core::GUIManager &gui_manager, const std::string &filename = "" );
+		Base( const Core::GUIManager &gui_manager, const std::string &filename = "error.png" );
 		~Base();
 
 		virtual void Draw()		= 0;
-		virtual void Update( const unsigned short int &old_resolution_x, const unsigned short int &old_resolution_y );
+		void Update( const float &old_resolution_x, const float &old_resolution_y );
 
 		std::string& Filename() { return filename; }
 
