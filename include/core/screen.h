@@ -2,10 +2,14 @@
 #ifndef BASE_SCREEN_H
 #define BASE_SCREEN_H
 
-#include "base/static_entity.h"
 #include <list>
 
-namespace Base
+namespace Entities
+{
+	class StaticEntity;
+}
+
+namespace Core
 {
 	class Screen
 	{
@@ -13,7 +17,7 @@ namespace Base
 			Screen();
 			~Screen();
 
-			bool AddEntity(StaticEntity & entity);
+			bool AddEntity( Entities::StaticEntity & entity );
 		private:
 	};
 }

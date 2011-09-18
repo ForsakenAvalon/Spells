@@ -1,7 +1,7 @@
 
 #include "core/state_manager.h"
 
-#include "base/menu.h"
+#include "states/menu.h"
 
 namespace Core
 {
@@ -9,8 +9,8 @@ namespace Core
 		: current_state(NULL)
 		, window(window)
 	{
-		this->states = new std::list<Base::State*>();
-		this->states->push_back(new Base::Menu(StateType::MENU, window));
+		this->states = new std::list<States::State*>();
+		this->states->push_back(new States::Menu(StateType::MENU, window));
 	}
 
 	StateManager::~StateManager()
@@ -44,7 +44,7 @@ namespace Core
 
 	bool StateManager::SetState( const StateType::List name )
 	{
-		for ( std::list<Base::State*>::iterator iter = this->states->begin(); iter != this->states->end(); iter++ )
+		for ( std::list<States::State*>::iterator iter = this->states->begin(); iter != this->states->end(); iter++ )
 		{
 			if ( name == (*iter)->GetState() )
 			{

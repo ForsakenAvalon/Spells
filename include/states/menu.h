@@ -1,15 +1,15 @@
 
-#ifndef BASE_MENU_H
-#define BASE_MENU_H
+#ifndef STATES_MENU_H
+#define STATES_MENU_H
 
-#include "base/state.h"
+#include "states/state.h"
 
 namespace Core
 {
 	class Window;
 }
 
-namespace Base
+namespace States
 {
 	class Menu : public State
 	{
@@ -30,4 +30,4 @@ namespace Base
 	};
 }
 
-#endif // BASE_MENU_H
+#endif // STATES_MENU_H

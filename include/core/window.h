@@ -1,11 +1,9 @@
 
-// window_engine.h
+// window.h
 // Wrapper for sfml window class
 
 #ifndef CORE_WINDOW_H
 #define CORE_WINDOW_H
-
-#include "utility/string.h"
 
 #include <SFML/Graphics.hpp>
 

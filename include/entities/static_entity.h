@@ -1,15 +1,16 @@
-// include/base/entity.h
-// inherits Vector in include/base/vector.h
 
-#ifndef BASE_STATIC_ENTITY_H
-#define BASE_STATIC_ENTITY_H
+// static_entity.h
+// inherits Utility::Vector
 
-#include "base/vector.h"
+#ifndef ENTITIES_STATIC_ENTITY_H
+#define ENTITIES_STATIC_ENTITY_H
 
-namespace Base
+#include "utility/vector.h"
+
+namespace Entities
 {
 	//! /brief Represents a Static Object
-	class StaticEntity : public Vector<int>
+	class StaticEntity : public Utility::Vector<int>
 	{
 		public:
 			// Constructor
@@ -25,4 +26,4 @@ namespace Base
 	};
 }
 
-#endif // BASE_STATIC_ENTITY_H
+#endif // ENTITIES_STATIC_ENTITY_H

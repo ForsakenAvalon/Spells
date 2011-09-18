@@ -1,7 +1,7 @@
 
-#include "base/state.h"
+#include "states/state.h"
 
-namespace Base
+namespace States
 {
 	State::State( StateType::List state, Core::Window &window )
 		: my_state(state)

@@ -1,6 +1,6 @@
 
-#ifndef BASE_STATE_H
-#define BASE_STATE_H
+#ifndef STATES_STATE_H
+#define STATES_STATE_H
 
 #include <SFML/Window/Event.hpp>
 
@@ -14,7 +14,7 @@ namespace StateType
 	enum List;
 }
 
-namespace Base
+namespace States
 {
 	//! \brief An abstract class used by StateManager to control the windows current state
 	class State
@@ -58,7 +58,7 @@ namespace Base
 	};
 }
 
-#endif // BASE_STATE_H
+#endif // STATES_STATE_H
 
 //! \class Base::State
 //! \ingroup base

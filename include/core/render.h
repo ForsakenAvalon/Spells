@@ -1,9 +1,9 @@
 
-// renderer.h
+// render.h
 // Handles the rendering of all visible game objects.
 
-#ifndef ENGINE_RENDER_H
-#define ENGINE_RENDER_H
+#ifndef CORE_RENDER_H
+#define CORE_RENDER_H
 
 #include <SFML/Graphics/Sprite.hpp>
 
@@ -17,7 +17,7 @@ namespace GUI
 	class Button;
 }
 
-namespace Engine
+namespace Core
 {
 	class Render
 	{
@@ -26,11 +26,10 @@ namespace Engine
 			~Render();
 
 			void RenderSprite( sf::Sprite &sprite );
-			void RenderButton( GUI::Button &button );
 
 		private:
 			Core::Window &window;
 	};
 }
 
-#endif // ENGINE_RENDER_H
+#endif // CORE_RENDER_H

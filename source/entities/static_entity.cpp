@@ -1,8 +1,9 @@
-#include "base/static_entity.h"
 
-namespace Base
+#include "entities/static_entity.h"
+
+namespace Entities
 {
-	StaticEntity::StaticEntity(int x, int y) : Vector<int>(x, y)
+	StaticEntity::StaticEntity(int x, int y) : Utility::Vector<int>(x, y)
 	{
 		z = 0;
 	}

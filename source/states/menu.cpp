@@ -1,9 +1,9 @@
 
-#include "base/menu.h"
+#include "states/menu.h"
 
 #include <iostream>
 
-namespace Base
+namespace States
 {
 	Menu::Menu( const StateType::List state, Core::Window &window )
 		: State(state, window)

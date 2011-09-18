@@ -2,8 +2,6 @@
 #ifndef CORE_STATE_MANAGER_H
 #define CORE_STATE_MANAGER_H
 
-#include "base/state.h"
-
 #include <list>
 
 #include <SFML/Window/Event.hpp>
@@ -11,6 +9,11 @@
 namespace Core
 {
 	class Window;
+}
+
+namespace States
+{
+	class State;
 }
 
 namespace StateType
@@ -54,8 +57,8 @@ namespace Core
 		//! \return Validity of current_state
 		bool CheckCurrent();
 
-		std::list<Base::State*> *states;	//!< Contains all states
-		Base::State *current_state;			//!< Holds the current state
+		std::list<States::State*> *states;	//!< Contains all states
+		States::State *current_state;		//!< Holds the current state
 
 		Core::Window &window;				//!< Core::Window reference
 	};

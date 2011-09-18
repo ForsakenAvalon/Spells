@@ -1,8 +1,8 @@
 
-#ifndef BASE_VECTOR_H
-#define BASE_VECTOR_H
+#ifndef UTILITY_VECTOR_H
+#define UTILITY_VECTOR_H
 
-namespace Base
+namespace Utility
 {
 	template< typename T >
 	class Vector
@@ -30,4 +30,4 @@ namespace Base
 	};
 }
 
-#endif // BASE_VECTOR_H
+#endif // UTILITY_VECTOR_H

@@ -42,7 +42,7 @@ namespace Core
 		this->resolution.y = height;
 	}
 	
-	const Base::Vector<unsigned short int>& Config::GetResolution()
+	const Utility::Vector<unsigned short int>& Config::GetResolution()
 	{
 		return this->resolution;
 	}
