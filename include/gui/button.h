@@ -2,26 +2,26 @@
 #ifndef GUI_BUTTON_H
 #define GUI_BUTTON_H
 
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Image.hpp>
+#include "gui/base.h"
 
-#include "core/gui_manager.h"
+#include <SFML/Window/Event.hpp>
 
 namespace GUI
 {
-	class Button : public sf::Sprite
+	class Button : public GUI::Base
 	{
 	public:
 		Button( const Core::GUIManager &gui_manager, const std::string &filename = "" );
 		~Button();
 
-		bool CheckClicked( const int &mouse_x, const int &mouse_y );
+		void Draw();
+
+		bool Clicked( const sf::Event &window_event );
+		void EnableHover( const bool &hover );
 
 	private:
-		Core::GUIManager gui_manager; //!< Reference to the GUI Manager.
-
-		std::string filename;
+		bool *hover;
 	};
 }
 
-#endif
+#endif // GUI_BUTTON_H

@@ -58,11 +58,6 @@ namespace Core
 			Core::GUIManager *gui_manager;
 			//GUI::ActionBar *action_bar;
 			// End action bar test code
-
-			// Debug code
-			sf::Sprite *sprite_1;
-			sf::Image *image_1;
-			// End debug code
 	};
 }
 

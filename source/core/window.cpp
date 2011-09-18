@@ -44,15 +44,9 @@ namespace Core
 
 		// Action bar test code
 		this->gui_manager = new Core::GUIManager(this->objWindow, *this->config, *this->resource_manager);
-		this->gui_manager->ActionBar("testbar", "actionbar.PNG");
+		//this->gui_manager->ActionBar("testbar", "actionbar.PNG");
 		//this->action_bar = new GUI::ActionBar(this->objWindow, *this->config, *this->resource_manager, "actionbar.PNG");
 		// End action bar test code
-
-		// Debug code
-		this->image_1 = new sf::Image();
-		this->image_1->LoadFromFile("resources/images/button.png");
-		this->sprite_1 = new sf::Sprite(*this->image_1);
-		// End debug code
 	}
 
 	Window::~Window()
@@ -78,11 +72,6 @@ namespace Core
 		delete this->log;
 
 		delete this->resource_manager;
-
-		// Debug code
-		delete this->sprite_1;
-		delete this->image_1;
-		// End debug code
 	}
 
 	void Window::Run()
@@ -109,13 +98,11 @@ namespace Core
 	{
 		// Action bar test code
 		//this->action_bar->Update();
-		this->gui_manager->ActionBar("testbar").Update();
+		//this->gui_manager->ActionBar("testbar").Update();
 		//this->objWindow.Draw(this->action_bar->GetActionBar());
 		// End action bar test code
+
 		this->state_manager->Update();
-		// Debug code
-		this->objWindow.Draw(*this->sprite_1);
-		// End debug code
 	}
 
 	// Executes the main loop of the program. You cannot call Loop directly, use Run instead.

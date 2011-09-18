@@ -12,6 +12,7 @@ namespace sf
 
 namespace GUI
 {
+	class Base;
 	class Button;
 	class ActionBar;
 }
@@ -34,11 +35,14 @@ namespace Core
 		GUIManager( sf::RenderWindow &window, Core::Config &config, Utility::ResourceManager &resource_manager );
 		~GUIManager();
 
+		friend class GUI::Base;
 		friend class GUI::Button;
 		friend class GUI::ActionBar;
 
 		GUI::Button&	Button( const std::string &name, const std::string &filename = "" );
 		GUI::ActionBar& ActionBar( const std::string &name, const std::string &filename = "" );
+
+		void SetPosition( const std::string &name, const float &x, const float &y );
 
 	protected:
 		sf::RenderWindow &window;					//!< Reference to sf::RenderWindow.
