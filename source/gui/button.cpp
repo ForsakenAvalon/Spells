@@ -3,14 +3,10 @@
 
 namespace GUI
 {
-	Button::Button()
+	Button::Button( const Core::GUIManager &gui_manager, const std::string &filename /* = "" */ )
 		: sf::Sprite()
-	{
-
-	}
-
-	Button::Button( const sf::Image &image )
-		: sf::Sprite(image)
+		, gui_manager(gui_manager)
+		, filename(filename)
 	{
 
 	}

@@ -14,15 +14,11 @@ namespace Utility
 	class ResourceManager;
 }
 
-namespace GUI
-{
-	class ActionBar;
-}
-
 namespace Core
 {
 	class StateManager;
 	class Config;
+	class GUIManager;
 
 	class Window 
 	{
@@ -59,7 +55,8 @@ namespace Core
 			Utility::ResourceManager *resource_manager;
 
 			// Action bar test code
-			GUI::ActionBar *action_bar;
+			Core::GUIManager *gui_manager;
+			//GUI::ActionBar *action_bar;
 			// End action bar test code
 
 			// Debug code

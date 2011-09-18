@@ -5,6 +5,10 @@
 #include <map>
 #include <string>
 
+// debug
+#include <iostream>
+// end debug
+
 //
 // Handled resource includes.
 //
@@ -28,7 +32,7 @@ namespace Utility
 		template< typename T >
 		T* GetResource( const std::string &filename )
 		{
-			ResourceMap::iterator iter = this->resources.find(filename);
+			ResourceMap::const_iterator iter = this->resources.find(filename);
 			if ( iter != this->resources.end() ) // If we have found a resource there is no need to load one.
 			{
 				this->resources_count[filename] += 1;

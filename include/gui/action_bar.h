@@ -2,10 +2,8 @@
 #ifndef GUI_ACTION_BAR_H
 #define GUI_ACTION_BAR_H
 
-#include "gui/button.h"
-#include "utility/resource_manager.h"
-
 #include <string>
+#include "core/gui_manager.h"
 
 namespace sf
 {
@@ -15,15 +13,23 @@ namespace sf
 
 namespace Core
 {
+	//class GUIManager;
 	class Config;
+}
+
+namespace Utility
+{
+	class ResourceManager;
 }
 
 namespace GUI
 {
+	class Button;
+
 	class ActionBar
 	{
 	public:
-		ActionBar( sf::RenderWindow &window, Core::Config &config, Utility::ResourceManager &resource_manager, const std::string &filename );
+		ActionBar( const Core::GUIManager &gui_manager, const std::string &filename );
 		~ActionBar();
 
 		void Update();
@@ -31,14 +37,12 @@ namespace GUI
 	private:
 		void Draw();
 
-		sf::RenderWindow &window;					//!< Reference to sf::RenderWindow.
-		Core::Config &config;						//!< Reference to Config.
-		Utility::ResourceManager &resource_manager;	//!< Reference to ResourceManager.
+		Core::GUIManager gui_manager;	//!< Reference to the GUI Manager.
 
 		GUI::Button		**buttons;	//!< Holds a button for each button on the action bar.
 		sf::Sprite		*actionbar;	//!< Holds the action bar's sprite.
 
-		std::string *filename;	//!< Holds the filename of the image for this actionbar.
+		std::string filename;	//!< Holds the filename of the image for this actionbar.
 
 		unsigned short int *last_res_width;		//!< Holds the last resolution used to position the action bar.
 		unsigned short int *last_res_height;	//!< Holds the last resolution used to position the action bar.

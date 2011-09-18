@@ -10,13 +10,14 @@ namespace Utility
 
 	ResourceManager::~ResourceManager()
 	{
-		this->resources.clear(); // Empty the map of resources.
+		this->resources.clear();		// Empty the map of resources.
+		this->resources_count.clear();	// Empty the map of resource counts.
 	}
 
 	void ResourceManager::KillResource( const std::string &filename )
 	{
 		{
-			ResourceCount::iterator iter = this->resources_count.find(filename);
+			ResourceCount::const_iterator iter = this->resources_count.find(filename);
 			if ( iter == this->resources_count.end() )
 				return;
 		}
@@ -26,7 +27,7 @@ namespace Utility
 			return;
 
 		{
-			ResourceMap::iterator iter = this->resources.find(filename);
+			ResourceMap::const_iterator iter = this->resources.find(filename);
 			if ( iter == this->resources.end() )
 				return;
 		}
@@ -37,7 +38,7 @@ namespace Utility
 	}
 
 	template<>
-	sf::Image* ResourceManager::LoadResource<sf::Image>(const std::string &filename)
+	sf::Image* ResourceManager::LoadResource<sf::Image>( const std::string &filename )
 	{
 		sf::Image *image = new sf::Image();
 		image->SetSmooth(false); // Pixel game!
@@ -50,7 +51,7 @@ namespace Utility
 	}
 
 	template<>
-	sf::Font* ResourceManager::LoadResource<sf::Font>(const std::string &filename)
+	sf::Font* ResourceManager::LoadResource<sf::Font>( const std::string &filename )
 	{
 		sf::Font *font = new sf::Font();
 
@@ -62,7 +63,7 @@ namespace Utility
 	}
 
 	template<>
-	sf::Shader* ResourceManager::LoadResource<sf::Shader>(const std::string &filename)
+	sf::Shader* ResourceManager::LoadResource<sf::Shader>( const std::string &filename )
 	{
 		sf::Shader *shader = new sf::Shader();
 
@@ -74,7 +75,7 @@ namespace Utility
 	}
 
 	template<>
-	sf::SoundBuffer* ResourceManager::LoadResource<sf::SoundBuffer>(const std::string &filename)
+	sf::SoundBuffer* ResourceManager::LoadResource<sf::SoundBuffer>( const std::string &filename )
 	{
 		sf::SoundBuffer *sound_buffer = new sf::SoundBuffer();
 
@@ -86,7 +87,7 @@ namespace Utility
 	}
 
 	template<>
-	sf::Music* ResourceManager::LoadResource<sf::Music>(const std::string &filename)
+	sf::Music* ResourceManager::LoadResource<sf::Music>( const std::string &filename )
 	{
 		sf::Music *music = new sf::Music();
 

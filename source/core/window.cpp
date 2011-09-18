@@ -5,8 +5,10 @@
 
 #include "utility/class_parser.h"
 #include "utility/log.h"
+#include "utility/resource_manager.h"
 
 // Action bar test code
+#include "core/gui_manager.h"
 #include "gui/action_bar.h"
 // End action bar test code
 
@@ -41,7 +43,9 @@ namespace Core
 		this->state_manager = new Core::StateManager(*this);
 
 		// Action bar test code
-		this->action_bar = new GUI::ActionBar(this->objWindow, *this->config, *this->resource_manager, "actionbar.PNG");
+		this->gui_manager = new Core::GUIManager(this->objWindow, *this->config, *this->resource_manager);
+		this->gui_manager->ActionBar("testbar", "actionbar.PNG");
+		//this->action_bar = new GUI::ActionBar(this->objWindow, *this->config, *this->resource_manager, "actionbar.PNG");
 		// End action bar test code
 
 		// Debug code
@@ -64,7 +68,8 @@ namespace Core
 		}
 		
 		// Action bar test code
-		delete this->action_bar;
+		delete this->gui_manager;
+		//delete this->action_bar;
 		// End action bar test code
 
 		delete this->state_manager;
@@ -103,7 +108,8 @@ namespace Core
 	void Window::Draw()
 	{
 		// Action bar test code
-		this->action_bar->Update();
+		//this->action_bar->Update();
+		this->gui_manager->ActionBar("testbar").Update();
 		//this->objWindow.Draw(this->action_bar->GetActionBar());
 		// End action bar test code
 		this->state_manager->Update();
@@ -144,17 +150,7 @@ namespace Core
 				// Resize Code if required
 				break;
 			case sf::Event::KeyPressed:
-				if ( objEvent.Key.Code == sf::Key::A )
-				{
-					this->config->SetResolution(this->config->GetResolution().x + 50, this->config->GetResolution().y + 50);
-					std::cout << "Incremented config resolution by 50, now = " << this->config->GetResolution().x << ", " << this->config->GetResolution().y << std::endl;
-				}
-				else if ( objEvent.Key.Code == sf::Key::D )
-				{
-					this->config->SetResolution(this->config->GetResolution().x - 50, this->config->GetResolution().y - 50);
-					std::cout << "Decremented config resolution by 50, now = " << this->config->GetResolution().x << ", " << this->config->GetResolution().y << std::endl;
-				}
-				else if ( objEvent.Key.Code == sf::Key::Escape )
+				if ( objEvent.Key.Code == sf::Key::Escape )
 				{
 					if ( this->config->GetResolution().x != 1024 || this->config->GetResolution().y != 800 )
 					{
