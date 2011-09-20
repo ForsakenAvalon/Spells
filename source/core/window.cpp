@@ -216,21 +216,16 @@ namespace Core
 			std::string s_resolution_y = s_resolution_x.substr(pos + 1);
 			s_resolution_x = s_resolution_x.substr(0, pos);
 
-			std::cout << "res x: " << s_resolution_x << ", res y: " << s_resolution_y << std::endl;
-
 			std::stringstream ss_x(s_resolution_x);
 			if ( !(ss_x >> resolution_x) )
 				return;
-
-			std::cout << "res x: " << resolution_x << std::endl;
 
 			std::stringstream ss_y(s_resolution_y);
 			if ( !(ss_y >> resolution_y) )
 				return;
 
-			std::cout << "res y: " << resolution_y << std::endl;
-
-			this->config->SetResolution(resolution_x, resolution_y);
+			if ( resolution_x != this->config->GetResolution().x || resolution_y != this->config->GetResolution().y )
+				this->config->SetResolution(resolution_x, resolution_y);
 		}
 
 		// Music volume.
@@ -243,7 +238,8 @@ namespace Core
 			if ( !(ss >> music_volume) )
 				return;
 
-			this->config->SetMusicVolume(music_volume);
+			if ( music_volume != this->config->GetMusicVolume() )
+				this->config->SetMusicVolume(music_volume);
 		}
 
 		// Sound volume.
@@ -256,7 +252,8 @@ namespace Core
 			if ( !(ss >> sound_volume) )
 				return;
 
-			this->config->SetSoundVolume(sound_volume);
+			if ( sound_volume != this->config->GetSoundVolume() )
+				this->config->SetSoundVolume(sound_volume);
 		}
 
 		// Mouse sensitivity.
@@ -269,7 +266,8 @@ namespace Core
 			if ( !(ss >> mouse_sensitivity) )
 				return;
 
-			this->config->SetMouseSensitivity(mouse_sensitivity);
+			if ( mouse_sensitivity != this->config->GetMouseSensitivity() )
+				this->config->SetMouseSensitivity(mouse_sensitivity);
 		}
 
 		// Mouse inverted.
@@ -282,7 +280,8 @@ namespace Core
 			if ( !(ss >> mouse_inverted) )
 				return;
 
-			this->config->SetMouseInverted(mouse_inverted);
+			if ( mouse_inverted != this->config->GetMouseInverted() )
+				this->config->SetMouseInverted(mouse_inverted);
 		}
 	}
 }
