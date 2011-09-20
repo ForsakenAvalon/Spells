@@ -16,7 +16,7 @@ namespace GUI
 		, filename(filename)
 	{
 		// We call KillResource in the gui_manager destructor.
-		this->SetImage(*this->gui_manager.resource_manager.GetResource<sf::Image>(filename));
+		this->SetTexture(*this->gui_manager.resource_manager.GetResource<sf::Texture>(filename));
 
 		this->initial_pos = new Utility::Vector<unsigned short int>((unsigned short int) this->GetPosition().x, (unsigned short int) this->GetPosition().y);
 	}

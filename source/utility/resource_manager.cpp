@@ -38,15 +38,15 @@ namespace Utility
 	}
 
 	template<>
-	sf::Image* ResourceManager::LoadResource<sf::Image>( const std::string &filename )
+	sf::Texture* ResourceManager::LoadResource<sf::Texture>( const std::string &filename )
 	{
-		sf::Image *image = new sf::Image();
-		image->SetSmooth(false); // Pixel game!
+		sf::Texture *texture = new sf::Texture();
+		texture->SetSmooth(false); // Pixel game!
 
-		if ( image->LoadFromFile("resources/images/" + filename) )
-			return image;
+		if ( texture->LoadFromFile("resources/images/" + filename) )
+			return texture;
 		
-		delete image;
+		delete texture;
 		return NULL;
 	}
 
@@ -74,7 +74,7 @@ namespace Utility
 		return NULL;
 	}
 
-	template<>
+	/*template<>
 	sf::SoundBuffer* ResourceManager::LoadResource<sf::SoundBuffer>( const std::string &filename )
 	{
 		sf::SoundBuffer *sound_buffer = new sf::SoundBuffer();
@@ -96,5 +96,5 @@ namespace Utility
 
 		delete music;
 		return NULL;
-	}
+	}*/
 }

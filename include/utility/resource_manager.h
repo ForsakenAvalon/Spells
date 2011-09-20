@@ -12,7 +12,7 @@
 //
 // Handled resource includes.
 //
-#include <SFML/Graphics/Image.hpp>
+#include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Shader.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>

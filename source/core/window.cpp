@@ -140,7 +140,7 @@ namespace Core
 				// Resize Code if required
 				break;
 			case sf::Event::KeyPressed:
-				if ( objEvent.Key.Code == sf::Key::Escape )
+				if ( objEvent.Key.Code == sf::Keyboard::Escape )
 				{
 					if ( this->config->GetResolution().x != 1024 || this->config->GetResolution().y != 800 )
 					{

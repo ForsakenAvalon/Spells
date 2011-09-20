@@ -12,7 +12,7 @@ namespace Core
 	{
 		// By default we set all the keys to Count, which is not a key.
 		for ( unsigned short int i = 0; i < Mapping::COUNT; i++ )
-			this->keys[i] = sf::Key::Count;
+			this->keys[i] = sf::Keyboard::KeyCount;
 	}
 
 	Config::~Config()
@@ -23,12 +23,12 @@ namespace Core
 	// 
 	// Keys
 	// 
-	void Config::SetKey( const Mapping::Code &mapping_code, const sf::Key::Code &key_code )
+	void Config::SetKey( const Mapping::Code &mapping_code, const sf::Keyboard::Key &key_code )
 	{
 		this->keys[mapping_code] = key_code;
 	}
 	
-	const sf::Key::Code& Config::GetKey( const Mapping::Code &mapping_code )
+	const sf::Keyboard::Key& Config::GetKey( const Mapping::Code &mapping_code )
 	{
 		return this->keys[mapping_code];
 	}

@@ -28,8 +28,8 @@ namespace Core
 		Config();
 		~Config();
 
-		void					SetKey( const Mapping::Code &mapping_code, const sf::Key::Code &key_code );
-		const sf::Key::Code&	GetKey( const Mapping::Code &mapping_code );
+		void						SetKey( const Mapping::Code &mapping_code, const sf::Keyboard::Key &key_code );
+		const sf::Keyboard::Key&	GetKey( const Mapping::Code &mapping_code );
 
         void										SetResolution( const unsigned short int &width, const unsigned short int &height );
         const Utility::Vector<unsigned short int>&	GetResolution();
@@ -47,7 +47,7 @@ namespace Core
 		const bool& GetMouseInverted();
 
 	private:
-		sf::Key::Code keys[Mapping::COUNT];				//!< Holds a keycode for every Key::Code.
+		sf::Keyboard::Key keys[Mapping::COUNT];			//!< Holds a keycode for every Key::Code.
 
 		Utility::Vector<unsigned short int> resolution;	//!< Game resolution, width/height.
 
