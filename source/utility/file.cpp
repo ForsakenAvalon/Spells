@@ -53,13 +53,13 @@ namespace Utility
 	bool File::DoesFileExist(const char *staticFileName)
 	{
 		std::ifstream file(staticFileName);
-		return (bool) file;
+		return file.is_open();
 	}
 
 	bool File::DoesFileExist(String &stringFileName)
 	{
 		std::ifstream file(stringFileName);
-		return (bool) file;
+		return file.is_open();
 	}
 
 	int File::Write(String &stringText)
