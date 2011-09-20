@@ -6,6 +6,9 @@
 #include <sstream>
 #include <fstream>
 
+// debug
+#include <iostream>
+
 namespace Utility
 {
 	ConfigParser::ConfigParser( const std::string &filename )
@@ -33,10 +36,12 @@ namespace Utility
 
 		std::string line;
 		unsigned int line_number = 0;
-		bool exit = false;
+		bool run = true;
 
-		while ( !file.eof() && !exit )
+		while ( file.good() && run )
 		{
+			std::getline(file, line);
+
 			line_number++;
 			std::string temp = line;
 
@@ -46,16 +51,16 @@ namespace Utility
 				if ( !this->OnlyWhitespace(temp) )
 				{
 					if ( !this->ParseLine(temp, line_number) )
-						exit = true;
+						run = false;
 				}
 			}
 		}
 
 		file.close();
-		if ( exit )
-			return false;
-		else
+		if ( run )
 			return true;
+		
+		return false;
 	}
 
 	bool ConfigParser::FileExists() const

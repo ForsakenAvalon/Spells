@@ -44,6 +44,7 @@ namespace Core
 			bool isRunning; // States if the window is running (Loop is being executed)
 			bool isInit; // States if the window has been initialized
 
+			void LoadConfig();
 			void Loop();
 			virtual void StandardEvents();
 
