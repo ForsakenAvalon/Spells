@@ -24,7 +24,7 @@ namespace Utility
 		std::ifstream file(this->filename);
 		if ( !file.is_open() )
 		{
-			Utility::Log log("config_parser.cpp");
+			Utility::Log log("config_parser.txt");
 			log.Write("Couldn't open file.");
 			log.EndLine();
 
@@ -82,7 +82,7 @@ namespace Utility
 			std::stringstream ss;
 			ss << line_number;
 
-			Utility::Log log("config_parser.cpp");
+			Utility::Log log("config_parser.txt");
 			log.Write("No equals seperator (");
 			log.Write(ss.str().c_str());
 			log.Write(").");
@@ -96,7 +96,7 @@ namespace Utility
 			std::stringstream ss;
 			ss << line_number;
 
-			Utility::Log log("config_parser.cpp");
+			Utility::Log log("config_parser.txt");
 			log.Write("Invalid format (");
 			log.Write(ss.str().c_str());
 			log.Write(").");
@@ -123,11 +123,11 @@ namespace Utility
 
 		if ( !this->KeyExists(key) )
 		{
-			this->contents.insert(key, value);
+			this->contents.insert(std::make_pair<std::string, std::string>(key, value));
 			return true;
 		}
 
-		Utility::Log log("config_parser.cpp");
+		Utility::Log log("config_parser.txt");
 		log.Write("Duplicate key detected.");
 		log.EndLine();
 
