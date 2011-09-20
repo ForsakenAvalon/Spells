@@ -58,6 +58,15 @@ namespace Utility
 			return true;
 	}
 
+	bool ConfigParser::FileExists() const
+	{
+		std::ifstream file(this->filename);
+		if ( !file.is_open() )
+			return false;
+
+		return true;
+	}
+
 	std::string ConfigParser::GetValue( const std::string &key ) const
 	{
 		if ( !this->KeyExists(key) ) // If there isn't such a key return an empty string.

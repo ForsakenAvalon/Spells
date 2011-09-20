@@ -15,6 +15,9 @@ namespace Utility
 		//! \brief Opens a file and then extracts keys and their values.
 		bool ReadFile();
 
+		//! \brief Checks if filename exists.
+		bool FileExists() const;
+
 		//! \brief Retrieves a value for a specified key.
 		std::string GetValue( const std::string &key ) const;
 
