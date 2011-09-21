@@ -85,13 +85,13 @@ namespace Core
 		void SetPosition( const std::string &name, const float &x, const float &y );
 
 	protected:
-		sf::RenderWindow &window;					//!< Reference to sf::RenderWindow.
-		Core::Config &config;						//!< Reference to Config.
-		Utility::ResourceManager &resource_manager;	//!< Reference to ResourceManager.
+		sf::RenderWindow &window;					//!< Reference to sf::RenderWindow
+		Core::Config &config;						//!< Reference to Config
+		Utility::ResourceManager &resource_manager;	//!< Reference to ResourceManager
 
 	private:
-		ButtonMap		buttons;	//!< Holds all created buttons.
-		ActionBarMap	actionbars;	//!< Holds all created actionbars.
+		ButtonMap		buttons;	//!< Holds all created buttons
+		ActionBarMap	actionbars;	//!< Holds all created actionbars
 	};
 }
 
