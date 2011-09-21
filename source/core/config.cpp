@@ -87,7 +87,12 @@ namespace Core
 	// 
 	void Config::SetMusicVolume( const unsigned short int &volume_percent )
 	{
-		this->volume_music = volume_percent;
+		if ( volume_percent > 200 )
+			this->volume_music = 200;
+		else if ( volume_percent < 0 )
+			this->volume_music = 0;
+		else
+			this->volume_music = volume_percent;
 	}
 
 	const unsigned short int& Config::GetMusicVolume()
@@ -100,7 +105,12 @@ namespace Core
 	// 
 	void Config::SetSoundVolume( const unsigned short int &volume_percent )
 	{
-		this->volume_sound = volume_percent;
+		if ( volume_percent > 200 )
+			this->volume_sound = 200;
+		else if ( volume_percent < 0 )
+			this->volume_sound = 0;
+		else
+			this->volume_sound = volume_percent;
 	}
 
 	const unsigned short int& Config::GetSoundVolume()
@@ -113,7 +123,12 @@ namespace Core
 	// 
 	void Config::SetMouseSensitivity( const unsigned short int &sensitivity_percent )
 	{
-		this->mouse_sensitivity = sensitivity_percent;
+		if ( sensitivity_percent > 200 )
+			this->mouse_sensitivity = 200;
+		else if ( sensitivity_percent < 0 )
+			this->mouse_sensitivity = 0;
+		else
+			this->mouse_sensitivity = sensitivity_percent;
 	}
 
 	const unsigned short int& Config::GetMouseSensitivity()
