@@ -32,7 +32,7 @@ namespace Core
 		Config( Core::Window *window );
 		~Config();
 
-		inline void SetWindow( Core::Window *window );
+		void SetWindow( Core::Window *window );
 
 		void						SetKey( const Mapping::Code &mapping_code, const sf::Keyboard::Key &key_code );
 		const sf::Keyboard::Key&	GetKey( const Mapping::Code &mapping_code );

@@ -41,7 +41,7 @@ namespace Core
 		this->window = NULL;
 	}
 
-	inline void Config::SetWindow( Core::Window *window )
+	void Config::SetWindow( Core::Window *window )
 	{
 		this->window = window;
 	}
