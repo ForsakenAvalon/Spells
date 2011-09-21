@@ -76,3 +76,10 @@ namespace Core
 }
 
 #endif // CORE_STATE_MANAGER_H
+
+//! \class Core::StateManager
+//! \ingroup core
+//! 
+//! Used by Core::Window to manage all of the game states. Each state
+//! has its own event and update loops allowing the state of the game
+//! to quickly and easily be switched.
