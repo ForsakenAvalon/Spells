@@ -18,8 +18,10 @@ namespace States
 
 namespace StateType
 {
-	//! Contains an element for each state so that states can be easily
-	//! selected throughout the program.
+	//! \brief Holds all possible states
+	//! 
+	//! Contains an element for each state to enable states
+	//! to be easily referenced across classes.
 	enum List
 	{
 		MENU = 0,
@@ -31,8 +33,7 @@ namespace StateType
 
 namespace Core
 {
-	//! \brief Manages all classes inherited from Base::State, defined in
-	//! the StateList enumerator
+	//! \brief Manages all classes inherited from Base::State
 	class StateManager
 	{
 	public:
@@ -43,12 +44,22 @@ namespace Core
 		~StateManager();
 
 		//! \brief Calls the current states Events function
+		//! 
+		//! \param objEvent Window loop event
+		//! 
+		//! \return Returns false if a state isn't set
 		bool Events( sf::Event &objEvent );
 		
 		//! \brief Calls the current states Update function
+		//! 
+		//! \return Returns false if a state isn't set
 		bool Update();
 
 		//! \brief Changes the current state to the specified state
+		//! 
+		//! \param name Enumerator representation of the state
+		//! 
+		//! \return Whether the state could be set
 		bool SetState( const StateType::List name );
 
 	private:
