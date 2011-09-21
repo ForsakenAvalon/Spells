@@ -123,17 +123,17 @@ namespace Core
 		const bool& GetMouseInverted();
 
 	private:
-		Core::Window *window;							//!< Holds a pointer to Core::Window.
-		sf::Keyboard::Key keys[Mapping::COUNT];			//!< Holds a keycode for every Key::Code.
-		std::string window_title;						//!< Holds the window title.
+		Core::Window *window;							//!< Holds a pointer to Core::Window
+		sf::Keyboard::Key keys[Mapping::COUNT];			//!< Holds a keycode for every Key::Code
+		std::string window_title;						//!< Holds the window title
 
-		Utility::Vector<unsigned short int> resolution;	//!< Game resolution, width/height.
+		Utility::Vector<unsigned short int> resolution;	//!< Game resolution, width/height
 
-		unsigned short int volume_music;				//!< Percentage volume of music.
-		unsigned short int volume_sound;				//!< Percentage volume of sound.
-		unsigned short int mouse_sensitivity;			//!< Percentage mouse sensitivity.
+		unsigned short int volume_music;				//!< Percentage volume of music
+		unsigned short int volume_sound;				//!< Percentage volume of sound
+		unsigned short int mouse_sensitivity;			//!< Percentage mouse sensitivity
 		
-		bool mouse_inverted;							//!< True if mouse is inverted.
+		bool mouse_inverted;							//!< True if mouse is inverted
 	};
 }
 
