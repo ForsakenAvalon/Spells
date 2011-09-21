@@ -53,7 +53,7 @@ namespace States
 		StateType::List GetState() { return this->my_state; }
 
 	protected:
-		StateType::List my_state; //!< States::StateList enumeration of this state
+		StateType::List my_state;	//!< States::StateList enumeration of this state
 		Core::Window &window;		//!< Reference to Core::Window
 	};
 }
