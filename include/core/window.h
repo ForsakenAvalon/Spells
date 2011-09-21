@@ -27,10 +27,8 @@ namespace Core
 			~Window();
 
 			void Run();
-			void Clear();
-			void Display();
-			void Draw();
-			void Exit();
+
+			inline void Create( const unsigned short int &width, const unsigned short int &height );
 
 			bool IsRunning();
 			bool IsInit();
@@ -38,15 +36,22 @@ namespace Core
 			sf::RenderWindow& RenderWindow()	{ return objWindow; }
 
 		private:
-			sf::RenderWindow objWindow;
-			sf::Event objEvent;
-
-			bool isRunning; // States if the window is running (Loop is being executed)
-			bool isInit; // States if the window has been initialized
+			void Clear();
+			void Display();
+			void Draw();
+			void Exit();
 
 			void LoadConfig();
 			void Loop();
 			virtual void StandardEvents();
+
+			sf::RenderWindow objWindow;
+			sf::Event objEvent;
+
+			std::string window_title;
+
+			bool isRunning; // States if the window is running (Loop is being executed)
+			bool isInit; // States if the window has been initialized
 
 			Core::StateManager *state_manager;
 			Core::Config *config;

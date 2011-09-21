@@ -5,9 +5,12 @@
 #include "utility/vector.h"
 
 #include <SFML/Window/Event.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 namespace Core
 {
+	class Window;
+
 	namespace Mapping
 	{
 		//! Contains all of the games possible input actions.
@@ -26,7 +29,10 @@ namespace Core
 	{
 	public:
 		Config();
+		Config( Core::Window *window );
 		~Config();
+
+		inline void SetWindow( Core::Window *window );
 
 		void						SetKey( const Mapping::Code &mapping_code, const sf::Keyboard::Key &key_code );
 		const sf::Keyboard::Key&	GetKey( const Mapping::Code &mapping_code );
@@ -47,7 +53,9 @@ namespace Core
 		const bool& GetMouseInverted();
 
 	private:
+		Core::Window *window;							//!< Holds a pointer to Core::Window.
 		sf::Keyboard::Key keys[Mapping::COUNT];			//!< Holds a keycode for every Key::Code.
+		std::string window_title;						//!< Holds the window title.
 
 		Utility::Vector<unsigned short int> resolution;	//!< Game resolution, width/height.
 

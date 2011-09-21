@@ -19,10 +19,13 @@
 namespace Core
 {
 	Window::Window( const char *title /* = "Unnamed" */ )
+		: window_title(title)
 	{
 		this->LoadConfig();
 		
-		objWindow.Create(sf::VideoMode(this->config->GetResolution().x, this->config->GetResolution().y), title, sf::Style::Close);
+		if ( !this->objWindow.IsOpened() ) // Config should have already created the window.
+			this->Create(this->config->GetResolution().x, this->config->GetResolution().y);
+
 		isInit = true;
 		isRunning = false;
 		
@@ -74,6 +77,11 @@ namespace Core
 		isRunning = true;
 		this->state_manager->SetState(StateType::MENU);
 		this->Loop();
+	}
+
+	inline void Window::Create( const unsigned short int &width, const unsigned short int &height )
+	{
+		this->objWindow.Create(sf::VideoMode(width, height), this->window_title, sf::Style::Close);
 	}
 
 	void Window::Clear()
@@ -134,14 +142,12 @@ namespace Core
 				{
 					if ( this->config->GetResolution().x != 1024 || this->config->GetResolution().y != 800 )
 					{
-						this->objWindow.Create(sf::VideoMode(1024, 800), "new title", sf::Style::Close);
 						std::cout << "Setting config resultion to 1024, 800" << std::endl;
 						this->config->SetResolution(1024, 800);
 						this->gui_manager->UpdateElements(800, 600);
 					}
 					else
 					{
-						this->objWindow.Create(sf::VideoMode(800, 600), "new title", sf::Style::Close);
 						std::cout << "Setting config resultion to 800, 600" << std::endl;
 						this->config->SetResolution(800, 600);
 						this->gui_manager->UpdateElements(1024, 800);
@@ -174,7 +180,9 @@ namespace Core
 
 		// Create a default configuration if no configuration could be loaded.
 		if ( !this->config )
-			this->config = new Core::Config();
+			this->config = new Core::Config(this);
+		else
+			this->config->SetWindow(this);
 
 		// Attempt to load any text configuration settings.
 		Utility::ConfigParser *config_parser = new Utility::ConfigParser("config.txt");

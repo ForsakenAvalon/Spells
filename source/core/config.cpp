@@ -1,10 +1,15 @@
 
 #include "core/config.h"
 
+#include "core/window.h"
+#include "utility/log.h"
+
 namespace Core
 {
 	Config::Config()
-		: resolution(800, 600)
+		: window(NULL)
+		, resolution(800, 600)
+		, window_title(window_title)
 		, volume_music(50)
 		, volume_sound(50)
 		, mouse_sensitivity(50)
@@ -15,9 +20,30 @@ namespace Core
 			this->keys[i] = sf::Keyboard::KeyCount;
 	}
 
+	Config::Config( Core::Window *window )
+		: window(window)
+		, window_title(window_title)
+		, volume_music(50)
+		, volume_sound(50)
+		, mouse_sensitivity(50)
+		, mouse_inverted(false)
+	{
+		// By default we set all the keys to Count, which is not a key.
+		for ( unsigned short int i = 0; i < Mapping::COUNT; i++ )
+			this->keys[i] = sf::Keyboard::KeyCount;
+
+		// Initialise the resolution via this class so that a window is created.
+		this->SetResolution(800, 600);
+	}
+
 	Config::~Config()
 	{
+		this->window = NULL;
+	}
 
+	inline void Config::SetWindow( Core::Window *window )
+	{
+		this->window = window;
 	}
 
 	// 
@@ -40,6 +66,15 @@ namespace Core
 	{
 		this->resolution.x = width;
 		this->resolution.y = height;
+
+		if ( this->window )
+			this->window->Create(width, height);
+		else
+		{
+			Utility::Log log("config.txt");
+			log.Write("Warning, this->window is null, cannot create window.");
+			log.EndLine();
+		}
 	}
 	
 	const Utility::Vector<unsigned short int>& Config::GetResolution()
