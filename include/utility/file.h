@@ -20,7 +20,7 @@ namespace Utility
 			int Write(String & stringText);
 
 			int Read();
-			int Read(uint pointer);
+			int Read(unsigned int pointer);
 			int Read(char * charDelim);
 
 			static bool DoesFileExist(String & stringFileName);
