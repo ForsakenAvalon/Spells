@@ -1,19 +1,19 @@
 
 #include "core/window.h"
-#include "core/state_manager.h"
-#include "core/config.h"
 
-#include "utility/class_parser.h"
-#include "utility/log.h"
+#include "core/config.h"
+#include "core/state_manager.h"
 #include "utility/resource_manager.h"
+#include "utility/log.h"
+#include "utility/class_parser.h"
 #include "utility/config_parser.h"
 
 // Action bar test code
 #include "core/gui_manager.h"
 #include "gui/action_bar.h"
+#include <iostream>
 // End action bar test code
 
-#include <iostream>
 #include <sstream>
 
 namespace Core
@@ -26,21 +26,21 @@ namespace Core
 		if ( !this->objWindow.IsOpened() ) // Config should have already created the window.
 			this->Create(this->config->GetResolution().x, this->config->GetResolution().y);
 
-		isInit = true;
-		isRunning = false;
+		this->isInit	= true;
+		this->isRunning = false;
 		
-		this->resource_manager = new Utility::ResourceManager();
-		this->log = new Utility::Log("window.txt");
-		this->class_parser = new Utility::ClassParser();
+		this->resource_manager	= new Utility::ResourceManager();
+		this->log				= new Utility::Log("window.txt");
+		this->class_parser		= new Utility::ClassParser();
 
 		this->state_manager = new Core::StateManager(*this);
 
 		// Action bar test code
 		this->gui_manager = new Core::GUIManager(this->objWindow, *this->config, *this->resource_manager);
-		this->gui_manager->ActionBar("testbar", "actionbar.PNG").SetPosition((float) ((this->objWindow.GetWidth() - 502) / 2),
-			(float) (this->objWindow.GetHeight() - 45));
-		//this->gui_manager->ActionBar("testbar", "actionbar.PNG");
-		//this->action_bar = new GUI::ActionBar(this->objWindow, *this->config, *this->resource_manager, "actionbar.PNG");
+		this->gui_manager->ActionBar("testbar", "actionbar.PNG").SetPosition(
+			(float) ((this->objWindow.GetWidth() - 502) / 2),
+			(float) (this->objWindow.GetHeight() - 45)
+			);
 		// End action bar test code
 	}
 
@@ -69,12 +69,17 @@ namespace Core
 		delete this->resource_manager;
 	}
 
+	// 
+	// Public Functions
+	// 
+
 	void Window::Run()
 	{
-		if ( isRunning )
+		if ( this->isRunning )
 			return;
 
-		isRunning = true;
+		this->isRunning = true;
+
 		this->state_manager->SetState(StateType::MENU);
 		this->Loop();
 	}
@@ -84,14 +89,32 @@ namespace Core
 		this->objWindow.Create(sf::VideoMode(width, height), this->window_title, sf::Style::Close);
 	}
 
+	// 
+	// Private Functions
+	// 
+
+	void Window::Loop()
+	{
+		while ( this->isRunning ) 
+		{
+			// Handle events.
+			this->Events();
+
+			// Call draw functions.
+			this->Clear();
+			this->Draw();
+			this->Display();
+		}
+	}
+
 	void Window::Clear()
 	{
-		objWindow.Clear();
+		this->objWindow.Clear();
 	}
 
 	void Window::Display()
 	{
-		objWindow.Display();
+		this->objWindow.Display();
 	}
 
 	void Window::Draw()
@@ -106,39 +129,31 @@ namespace Core
 		this->state_manager->Update();
 	}
 
-	// Executes the main loop of the program. You cannot call Loop directly, use Run instead.
-	void Window::Loop()
+	void Window::Exit()
 	{
-		while (isRunning) 
-		{
-			// Handle Standard Window Events
-			this->StandardEvents();
-
-			// Do standard draw process
-			this->Clear();
-			this->Draw();
-			this->Display();
-		}
+		if ( !this->isRunning )
+			return;
+		
+		this->isRunning = false;
 	}
 
-	//! /brief Handle Common Window Events
-	//! /descrip Clears the event stack of common events that occur in
-	//! the window.
-	void Window::StandardEvents()
+	void Window::Events()
 	{
-		while (objWindow.PollEvent(objEvent))
+		while ( this->objWindow.PollEvent(objEvent) )
 		{
 			// Global events.
-			switch (objEvent.Type)
+			switch ( this->objEvent.Type )
 			{
 			case sf::Event::Closed:
 				this->Exit();
 				break;
+
 			case sf::Event::Resized:
-				// Resize Code if required
 				break;
+
 			case sf::Event::KeyPressed:
-				if ( objEvent.Key.Code == sf::Keyboard::Escape )
+				// Action bar test code
+				if ( this->objEvent.Key.Code == sf::Keyboard::Escape )
 				{
 					if ( this->config->GetResolution().x != 1024 || this->config->GetResolution().y != 800 )
 					{
@@ -154,22 +169,16 @@ namespace Core
 					}
 					std::cout << "Config resolution: " << this->config->GetResolution().x << ", " << this->config->GetResolution().y << std::endl;
 				}
+				// End action bar test code
 
 				break;
-			default :
+
+			default:
 				break;
 			}
+			// End global events.
 
 			this->state_manager->Events(objEvent);
-		}
-	}
-
-	void Window::Exit()
-	{
-		if (isRunning) 
-		{
-			objWindow.Close();
-			isRunning = false;
 		}
 	}
 
