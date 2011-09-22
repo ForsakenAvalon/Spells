@@ -2,10 +2,9 @@
 #ifndef GUI_BASE_H
 #define GUI_BASE_H
 
-#include <string>
-
 #include "core/gui_manager.h"
-#include "utility/vector.h"
+
+#include <string>
 
 #include <SFML/Graphics/Sprite.hpp>
 
@@ -41,8 +40,8 @@ namespace GUI
 		std::string& Filename() { return filename; }
 
 	protected:
-		Core::GUIManager gui_manager;	//!< Reference to the GUI Manager.
-		std::string filename;			//!< Image name.
+		Core::GUIManager gui_manager;	//!< Reference to the GUI Manager
+		std::string filename;			//!< Image name
 	};
 }
 

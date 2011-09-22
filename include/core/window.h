@@ -5,6 +5,7 @@
 #include <string>
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Window/Event.hpp>
 
 // Action bar test code
 namespace Core

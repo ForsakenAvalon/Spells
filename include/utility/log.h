@@ -6,6 +6,7 @@
 
 namespace Utility
 {
+	//! \brief Opens the specified file for logging
 	class Log
 	{
 		public:

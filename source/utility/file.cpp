@@ -1,6 +1,8 @@
 
 #include "utility/file.h"
 
+#include <fstream>
+
 namespace Utility
 {
 	File::File(const char * staticFilePath)

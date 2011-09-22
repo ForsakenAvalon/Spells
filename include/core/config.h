@@ -4,8 +4,9 @@
 
 #include "utility/vector.h"
 
-#include <SFML/Window/Event.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Window/Keyboard.hpp>
+
+#include <string>
 
 namespace Core
 {
@@ -29,18 +30,12 @@ namespace Core
 	class Config
 	{
 	public:
-		//! \brief Default constructor
-		//! 
-		//! This constructor doesn't initialise *window, therefore SetWindow
-		//! must be called if this constructor is used.
-		Config();
-
 		//! \brief Constructor
 		//! 
 		//! SetWindow doesn't need to be called if this constructor is used.
 		//! 
 		//! \param window Pointer to Core::Window
-		Config( Core::Window *window );
+		Config( Core::Window *window = NULL );
 
 		//! \brief Default deconstructor
 		~Config();

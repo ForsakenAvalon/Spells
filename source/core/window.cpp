@@ -139,7 +139,7 @@ namespace Core
 
 	void Window::Events()
 	{
-		while ( this->objWindow.PollEvent(objEvent) )
+		while ( this->objWindow.PollEvent(this->objEvent) )
 		{
 			// Global events.
 			switch ( this->objEvent.Type )

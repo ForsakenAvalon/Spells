@@ -1,9 +1,11 @@
 
 #include "gui/base.h"
 
+#include "core/config.h"
 #include "utility/resource_manager.h"
 #include "utility/log.h"
-#include "core/config.h"
+
+#include <SFML/Graphics/Texture.hpp>
 
 // debug
 #include <iostream>

@@ -11,7 +11,7 @@ namespace Utility
 	{
 	}
 
-	String::String(String & textString)
+	String::String(Utility::String & textString)
 	{
 		*this = textString;
 	}

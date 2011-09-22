@@ -6,6 +6,8 @@
 
 namespace GUI
 {
+	class Button;
+
 	//! \brief A GUI element for an action bar
 	class ActionBar : public GUI::Base
 	{

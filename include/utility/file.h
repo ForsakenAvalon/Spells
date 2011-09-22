@@ -3,7 +3,6 @@
 #define UTILITY_FILE_H
 
 #include "utility/string.h"
-#include <fstream>
 
 namespace Utility
 {

@@ -5,10 +5,7 @@
 #include <map>
 #include <string>
 
-namespace sf
-{
-	class RenderWindow;
-}
+#include <SFML/Graphics/RenderWindow.hpp>
 
 namespace GUI
 {

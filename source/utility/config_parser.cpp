@@ -6,9 +6,6 @@
 #include <sstream>
 #include <fstream>
 
-// debug
-#include <iostream>
-
 namespace Utility
 {
 	ConfigParser::ConfigParser( const std::string &filename )
