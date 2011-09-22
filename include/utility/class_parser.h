@@ -12,9 +12,18 @@ namespace Utility
 	class ClassParser
 	{
 	public:
+		//! \brief Default constructor
 		ClassParser();
+
+		//! \brief Default deconstructor
 		~ClassParser();
 
+		//! \brief Write the specified class to a file
+		//! 
+		//! \param a_class	Class to write
+		//! \param filename Filename to write class to
+		//! 
+		//! \return False if class couldn't be written
 		template< typename T >
 		bool WriteClass( T *a_class, std::string &filename )
 		{
@@ -28,6 +37,12 @@ namespace Utility
 			return true;
 		}
 
+		//! \brief Write the specified class to a file
+		//! 
+		//! \param a_class	Class to write
+		//! \param filename Filename to write class to
+		//! 
+		//! \return False if class couldn't be written
 		template< typename T >
 		bool WriteClass( T *a_class, const char *filename )
 		{
@@ -41,6 +56,11 @@ namespace Utility
 			return true;
 		}
 
+		//! \brief Read a class from the specified file
+		//! 
+		//! \param filename Filename to read class from
+		//! 
+		//! \return Class read from file, NULL if no class could be read
 		template< typename T >
 		T* ReadClass( std::string &filename )
 		{
@@ -55,6 +75,11 @@ namespace Utility
 			return class_holder;
 		}
 
+		//! \brief Read a class from the specified file
+		//! 
+		//! \param filename Filename to read class from
+		//! 
+		//! \return Class read from file, NULL if no class could be read
 		template< typename T >
 		T* ReadClass( const char *filename )
 		{
@@ -68,10 +93,14 @@ namespace Utility
 			input.close();
 			return class_holder;
 		}
-
-	private:
-
 	};
 }
 
 #endif // UTILITY_CLASS_PARSER_H
+
+//! \class Utility::ClassParser
+//! \ingroup utility
+//! 
+//! Parses a class to or from a file. Classes written to files in
+//! this way will not be editable by a user as if they were a text
+//! file. Instead use Utility::ConfigParser.
