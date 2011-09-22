@@ -8,7 +8,7 @@
 
 namespace Utility
 {
-	//! \brief Writes and reads classes to and from files.
+	//! \brief Writes and reads classes to and from files
 	class ClassParser
 	{
 	public:
