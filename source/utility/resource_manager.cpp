@@ -1,6 +1,14 @@
 
 #include "utility/resource_manager.h"
 
+#include "utility/log.h"
+
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Shader.hpp>
+#include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/Audio/Music.hpp>
+
 namespace Utility
 {
 	ResourceManager::ResourceManager()
@@ -10,8 +18,17 @@ namespace Utility
 
 	ResourceManager::~ResourceManager()
 	{
-		this->resources.clear();		// Empty the map of resources.
-		this->resources_count.clear();	// Empty the map of resource counts.
+		if ( this->resources.empty() )
+		{
+			this->resources.clear();		// Empty the map of resources.
+			this->resources_count.clear();	// Empty the map of resource counts.
+		}
+		else
+		{
+			Utility::Log log("resource_manager.txt");
+			log.Write("Warning, not all resources have been destroyed.");
+			log.EndLine();
+		}
 	}
 
 	void ResourceManager::KillResource( const std::string &filename )
