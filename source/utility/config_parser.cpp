@@ -169,8 +169,8 @@ namespace Utility
 	void ConfigParser::ExtractKey( std::string &key, const unsigned int &equal_pos, const std::string &line ) const
 	{
 		key = line.substr(0, equal_pos);
-		if ( key.find('\t') != std::string::npos || key.find(' ') != std::string::npos )
-			key.erase(key.find_first_of("\t "));
+		key.erase(0, key.find_first_not_of("\t "));
+		key.erase(key.find_last_not_of("\t ") + 1);
 	}
 
 	void ConfigParser::ExtractValue( std::string &value, const unsigned int &equal_pos, const std::string &line ) const
