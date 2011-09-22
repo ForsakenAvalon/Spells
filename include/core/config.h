@@ -73,34 +73,32 @@ namespace Core
 
 		//! \brief Sets the games music volume
 		//! 
-		//! A percentage from 0% - 200%.
-		//! 
-		//! \param volume_percent Music volume as a percentage of 200
+		//! \param volume_percent Music volume as a percentage of 100
 		void SetMusicVolume( const unsigned short int &volume_percent );
 
 		//! \brief Gets the games music volume
 		//! 
-		//! \return Music volume as a percentage of 200
+		//! \return Music volume as a percentage of 100
 		const unsigned short int& GetMusicVolume();
 
 		//! \brief Sets the games sound volume
 		//! 
-		//! \param volume_percent Sound volume as a percentage of 200
+		//! \param volume_percent Sound volume as a percentage of 100
 		void SetSoundVolume( const unsigned short int &volume_percent );
 
 		//! \brief Gets the games sound volume
 		//! 
-		//! \return Sound volume as a percentage of 200
+		//! \return Sound volume as a percentage of 100
 		const unsigned short int& GetSoundVolume();
 
 		//! \brief Sets the mouse sensitivity
 		//! 
-		//! \param sensitivity_percent Mouse sensitivity as a percentage of 200
+		//! \param sensitivity_percent Mouse sensitivity as a percentage of 100
 		void SetMouseSensitivity( const unsigned short int &sensitivity_percent );
 
 		//! \brief Gets the mouse sensitivity
 		//! 
-		//! \return Mouse sensitivity as a percentage of 200
+		//! \return Mouse sensitivity as a percentage of 100
 		const unsigned short int& GetMouseSensitivity();
 
 		//! \brief Controls whether the mouse is inverted

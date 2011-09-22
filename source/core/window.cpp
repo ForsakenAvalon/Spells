@@ -5,7 +5,6 @@
 #include "core/state_manager.h"
 #include "utility/resource_manager.h"
 #include "utility/log.h"
-#include "utility/class_parser.h"
 #include "utility/config_parser.h"
 
 // Action bar test code
@@ -15,6 +14,7 @@
 // End action bar test code
 
 #include <sstream>
+#include <fstream>
 
 namespace Core
 {
@@ -31,7 +31,6 @@ namespace Core
 		
 		this->resource_manager	= new Utility::ResourceManager();
 		this->log				= new Utility::Log("window.txt");
-		this->class_parser		= new Utility::ClassParser();
 
 		this->state_manager = new Core::StateManager(*this);
 
@@ -49,12 +48,8 @@ namespace Core
 		// Close window if still running.
 		this->Exit();
 
-		// Attempt to write the configuration.
-		if ( !this->class_parser->WriteClass<Core::Config>(this->config, "config.dat") )
-		{
-			this->log->Write("Couldn't save configuration.");
-			this->log->EndLine();
-		}
+		// Attempt to save the configuration.
+		this->SaveConfig();
 		
 		// Action bar test code
 		delete this->gui_manager;
@@ -63,7 +58,6 @@ namespace Core
 
 		delete this->state_manager;
 		delete this->config;
-		delete this->class_parser;
 		delete this->log;
 
 		delete this->resource_manager;
@@ -185,13 +179,7 @@ namespace Core
 	void Window::LoadConfig()
 	{
 		// Attempt to load configuration.
-		this->config = this->class_parser->ReadClass<Core::Config>("data/config.dat");
-
-		// Create a default configuration if no configuration could be loaded.
-		if ( !this->config )
-			this->config = new Core::Config(this);
-		else
-			this->config->SetWindow(this);
+		this->config = new Core::Config(this);
 
 		// Attempt to load any text configuration settings.
 		Utility::ConfigParser *config_parser = new Utility::ConfigParser("config.txt");
@@ -199,19 +187,17 @@ namespace Core
 		// Exit function if the file can't be read.
 		if ( !config_parser->ReadFile() )
 		{
-			// Create a new file if the file doesn't exist (with default data).
-			if ( config_parser->FileExists() )
-				return; // Error in the file.
+			// Create a new file or overwrite one that exists as it's corrupt.
+			std::ofstream new_file("config.txt", std::ofstream::in | std::ofstream::trunc);
 
-			// Create the new default and empty config file.
-			std::ofstream new_file("config.txt");
-			std::string default_file = 
+			new_file << 
 				"\nresolution = 1024x800\n\n"
-				"music_volume = 100 // 0 - 200%.\n"
-				"sound_volume = 100 // 0 - 200%.\n\n"
-				"mouse_sensitivity = 100 // 0 - 200%\n"
+				"music_volume = 50 // 0 - 100%.\n"
+				"sound_volume = 50 // 0 - 100%.\n\n"
+				"mouse_sensitivity = 50 // 0 - 200%\n"
 				"mouse_inverted = false // Mouse inverted, true/false.\n";
-			new_file.write(default_file.c_str(), default_file.length());
+
+			new_file.close();
 
 			return;
 		}
@@ -227,22 +213,24 @@ namespace Core
 
 			std::string s_resolution_x = config_parser->GetValue("resolution");
 			unsigned int pos = s_resolution_x.find('x');
-			if ( pos == std::string::npos )
-				return;
+			if ( pos != std::string::npos )
+			{
+				std::string s_resolution_y = s_resolution_x.substr(pos + 1);
+				s_resolution_x = s_resolution_x.substr(0, pos);
 
-			std::string s_resolution_y = s_resolution_x.substr(pos + 1);
-			s_resolution_x = s_resolution_x.substr(0, pos);
+				std::stringstream ss_x(s_resolution_x);
+				std::stringstream ss_y(s_resolution_y);
 
-			std::stringstream ss_x(s_resolution_x);
-			if ( !(ss_x >> resolution_x) )
-				return;
-
-			std::stringstream ss_y(s_resolution_y);
-			if ( !(ss_y >> resolution_y) )
-				return;
-
-			if ( resolution_x != this->config->GetResolution().x || resolution_y != this->config->GetResolution().y )
-				this->config->SetResolution(resolution_x, resolution_y);
+				if ( (ss_x >> resolution_x) && (ss_y >> resolution_y) )
+				{
+					if ( resolution_x != this->config->GetResolution().x || resolution_y != this->config->GetResolution().y )
+						this->config->SetResolution(resolution_x, resolution_y);
+				}
+				else // If we couldn't use this new resolution, create the window with the default resolution.
+					this->config->SetResolution(1024, 800);
+			}
+			else // If we couldn't use this new resolution, create the window with the default resolution.
+				this->config->SetResolution(1024, 800);
 		}
 
 		// Music volume.
@@ -252,11 +240,9 @@ namespace Core
 			std::string s_music_volume = config_parser->GetValue("music_volume");
 			std::stringstream ss(s_music_volume);
 
-			if ( !(ss >> music_volume) )
-				return;
-
-			if ( music_volume != this->config->GetMusicVolume() )
-				this->config->SetMusicVolume(music_volume);
+			if ( (ss >> music_volume) )
+				if ( music_volume != this->config->GetMusicVolume() )
+					this->config->SetMusicVolume(music_volume);
 		}
 
 		// Sound volume.
@@ -266,11 +252,9 @@ namespace Core
 			std::string s_sound_volume = config_parser->GetValue("sound_volume");
 			std::stringstream ss(s_sound_volume);
 
-			if ( !(ss >> sound_volume) )
-				return;
-
-			if ( sound_volume != this->config->GetSoundVolume() )
-				this->config->SetSoundVolume(sound_volume);
+			if ( (ss >> sound_volume) )
+				if ( sound_volume != this->config->GetSoundVolume() )
+					this->config->SetSoundVolume(sound_volume);
 		}
 
 		// Mouse sensitivity.
@@ -280,11 +264,9 @@ namespace Core
 			std::string s_mouse_sensitivity = config_parser->GetValue("mouse_sensitivity");
 			std::stringstream ss(s_mouse_sensitivity);
 
-			if ( !(ss >> mouse_sensitivity) )
-				return;
-
-			if ( mouse_sensitivity != this->config->GetMouseSensitivity() )
-				this->config->SetMouseSensitivity(mouse_sensitivity);
+			if ( (ss >> mouse_sensitivity) )
+				if ( mouse_sensitivity != this->config->GetMouseSensitivity() )
+					this->config->SetMouseSensitivity(mouse_sensitivity);
 		}
 
 		// Mouse inverted.
@@ -294,11 +276,30 @@ namespace Core
 			std::string s_mouse_inverted = config_parser->GetValue("mouse_inverted");
 			std::stringstream ss(s_mouse_inverted);
 
-			if ( !(ss >> mouse_inverted) )
-				return;
-
-			if ( mouse_inverted != this->config->GetMouseInverted() )
-				this->config->SetMouseInverted(mouse_inverted);
+			if ( (ss >> mouse_inverted) )
+				if ( mouse_inverted != this->config->GetMouseInverted() )
+					this->config->SetMouseInverted(mouse_inverted);
 		}
+
+		// Clean up.
+		delete config_parser;
+	}
+
+	void Window::SaveConfig()
+	{
+		// Attempts to save the configuration settings
+		Utility::ConfigParser *config_parser = new Utility::ConfigParser("config.txt");
+
+		std::ofstream new_file("config.txt", std::ofstream::in | std::ofstream::trunc);
+
+		new_file << "\nresolution = " << this->config->GetResolution().x << "x" << this->config->GetResolution().y << "\n\n";
+		new_file << "music_volume = " << this->config->GetMusicVolume() << " // 0 - 100%.\n";
+		new_file << "sound_volume = " << this->config->GetSoundVolume() << " // 0 - 100%.\n\n";
+		new_file << "mouse_sensitivity = " << this->config->GetMouseSensitivity() << " // 0 - 200%\n";
+		new_file << "mouse_inverted = " << this->config->GetMouseInverted() << " // Mouse inverted, true/false.\n";
+
+		new_file.close();
+
+		delete config_parser;
 	}
 }

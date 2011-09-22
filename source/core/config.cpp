@@ -17,10 +17,6 @@ namespace Core
 		// By default we set all the keys to Count, which is not a key.
 		for ( unsigned short int i = 0; i < Mapping::COUNT; i++ )
 			this->keys[i] = sf::Keyboard::KeyCount;
-
-		// Initialise the resolution via this class so that a window is created.
-		if ( this->window != NULL )
-			this->SetResolution(800, 600);
 	}
 
 	Config::~Config()
@@ -74,8 +70,8 @@ namespace Core
 	// 
 	void Config::SetMusicVolume( const unsigned short int &volume_percent )
 	{
-		if ( volume_percent > 200 )
-			this->volume_music = 200;
+		if ( volume_percent > 100 )
+			this->volume_music = 100;
 		else if ( volume_percent < 0 )
 			this->volume_music = 0;
 		else
@@ -92,8 +88,8 @@ namespace Core
 	// 
 	void Config::SetSoundVolume( const unsigned short int &volume_percent )
 	{
-		if ( volume_percent > 200 )
-			this->volume_sound = 200;
+		if ( volume_percent > 100 )
+			this->volume_sound = 100;
 		else if ( volume_percent < 0 )
 			this->volume_sound = 0;
 		else
@@ -110,8 +106,8 @@ namespace Core
 	// 
 	void Config::SetMouseSensitivity( const unsigned short int &sensitivity_percent )
 	{
-		if ( sensitivity_percent > 200 )
-			this->mouse_sensitivity = 200;
+		if ( sensitivity_percent > 100 )
+			this->mouse_sensitivity = 100;
 		else if ( sensitivity_percent < 0 )
 			this->mouse_sensitivity = 0;
 		else

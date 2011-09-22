@@ -16,7 +16,6 @@ namespace Core
 
 namespace Utility
 {
-	class ClassParser;
 	class Log;
 	class ResourceManager;
 }
@@ -86,6 +85,9 @@ namespace Core
 			//! \brief Attempts to load configuration settings
 			void LoadConfig();
 
+			//! \brief Attempts to save confgiuration settings
+			void SaveConfig();
+
 			sf::RenderWindow objWindow;					//!< RenderWindow
 			sf::Event objEvent;							//!< Event object
 
@@ -94,7 +96,6 @@ namespace Core
 			Core::StateManager *state_manager;			//!< Pointer to Core::StateManager
 			Core::Config *config;						//!< Pointer to Core::Config
 
-			Utility::ClassParser *class_parser;			//!< Pointer to ClassParser
 			Utility::Log *log;							//!< Pointer to Log
 			Utility::ResourceManager *resource_manager;	//!< Pointer to ResourceManager
 
