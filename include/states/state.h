@@ -21,12 +21,19 @@ namespace States
 	{
 	public:
 		//! \brief Constructor
+		//! 
+		//! Creates a new state with the specified enum name and Core::Window reference.
+		//! 
+		//! \param state	StateType of this state
+		//! \param window	Core::Window reference
 		State( const StateType::List state, Core::Window &window );
 
 		//! \brief Deconstructor
 		virtual ~State();
 
 		//! \brief Handles the specific states events
+		//! 
+		//! \param objEvent Event from the event loop
 		virtual void Events( sf::Event &objEvent )	= 0;
 
 		//! \brief Handles the specific states updates
@@ -49,6 +56,8 @@ namespace States
 
 		//! \brief Returns the states name from the StateList enum
 		//! 
+		//! \return States::StateList name this state uses
+		//! 
 		//! \see States::StateList
 		StateType::List GetState() { return this->my_state; }
 
@@ -60,8 +69,8 @@ namespace States
 
 #endif // STATES_STATE_H
 
-//! \class Base::State
-//! \ingroup base
+//! \class States::State
+//! \ingroup states
 //! 
 //! States are a set of classes that all control different aspects of the game.
 //! Where as one state may control a menu, or an options menu, another could be
