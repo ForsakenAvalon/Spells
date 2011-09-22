@@ -2,6 +2,7 @@
 #include "gui/base.h"
 
 #include "utility/resource_manager.h"
+#include "utility/log.h"
 #include "core/config.h"
 
 // debug
@@ -16,14 +17,26 @@ namespace GUI
 		, filename(filename)
 	{
 		// We call KillResource in the gui_manager destructor.
-		this->SetTexture(*this->gui_manager.resource_manager.GetResource<sf::Texture>(filename));
-
-		this->initial_pos = new Utility::Vector<unsigned short int>((unsigned short int) this->GetPosition().x, (unsigned short int) this->GetPosition().y);
+		sf::Texture *temp = this->gui_manager.resource_manager.GetResource<sf::Texture>(filename);
+		if ( temp != NULL )
+			this->SetTexture(*temp);
+		else
+		{
+			temp = this->gui_manager.resource_manager.GetResource<sf::Texture>("error.png");
+			if ( temp != NULL )
+				this->SetTexture(*temp);
+			else
+			{
+				Utility::Log log("base.txt");
+				log.Write("Coudln't load texture!");
+				log.EndLine();
+			}
+		}
 	}
 
 	Base::~Base()
 	{
-		delete this->initial_pos;
+		
 	}
 
 	void Base::Draw()
