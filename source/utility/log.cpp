@@ -57,7 +57,7 @@ namespace Utility
 
 	void Log::EndLine()
 	{
-		std::fstream file(*this->name, std::ios_base::app);
+		std::fstream file("logs/" + *this->name, std::ios_base::app);
 		
 		*this->buffer += '\n';
 
