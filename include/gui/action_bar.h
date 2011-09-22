@@ -12,7 +12,7 @@ namespace GUI
 	public:
 		//! \brief Constructor
 		//! 
-		//! Creates a new action bar with a background image.
+		//! Creates a new action bar using the image specified by filename.
 		//! 
 		//! \param gui_manager	Core::GUIManager reference
 		//! \param filename		Location of image (in resources/images/)
@@ -25,6 +25,8 @@ namespace GUI
 		void Draw();
 
 		//! \brief Called when the position of the action bar is updated
+		//! 
+		//! Used to update the position of all the action bars button members.
 		void PositionUpdated();
 
 	private:
