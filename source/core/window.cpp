@@ -149,17 +149,17 @@ namespace Core
 				// Action bar test code
 				if ( this->objEvent.Key.Code == sf::Keyboard::Escape )
 				{
-					if ( this->config->GetResolution().x != 1024 || this->config->GetResolution().y != 800 )
+					if ( this->config->GetResolution().x != 1024 || this->config->GetResolution().y != 768 )
 					{
-						std::cout << "Setting config resultion to 1024, 800" << std::endl;
-						this->config->SetResolution(1024, 800);
+						std::cout << "Setting config resultion to 1024, 768" << std::endl;
+						this->config->SetResolution(1024, 768);
 						this->gui_manager->UpdateElements(800, 600);
 					}
 					else
 					{
 						std::cout << "Setting config resultion to 800, 600" << std::endl;
 						this->config->SetResolution(800, 600);
-						this->gui_manager->UpdateElements(1024, 800);
+						this->gui_manager->UpdateElements(1024, 768);
 					}
 					std::cout << "Config resolution: " << this->config->GetResolution().x << ", " << this->config->GetResolution().y << std::endl;
 				}
@@ -191,7 +191,7 @@ namespace Core
 			std::ofstream new_file("config.txt", std::ofstream::in | std::ofstream::trunc);
 
 			new_file << 
-				"\nresolution = 1024x800\n\n"
+				"\nresolution = 1024x768\n\n"
 				"music_volume = 50 // 0 - 100%.\n"
 				"sound_volume = 50 // 0 - 100%.\n\n"
 				"mouse_sensitivity = 50 // 0 - 200%\n"
@@ -227,10 +227,10 @@ namespace Core
 						this->config->SetResolution(resolution_x, resolution_y);
 				}
 				else // If we couldn't use this new resolution, create the window with the default resolution.
-					this->config->SetResolution(1024, 800);
+					this->config->SetResolution(1024, 768);
 			}
 			else // If we couldn't use this new resolution, create the window with the default resolution.
-				this->config->SetResolution(1024, 800);
+				this->config->SetResolution(1024, 768);
 		}
 
 		// Music volume.
