@@ -158,13 +158,13 @@ namespace Core
 					{
 						std::cout << "Setting config resultion to 1024, 768" << std::endl;
 						this->config->SetResolution(1024, 768);
-						this->gui_manager->UpdateElements(800, 600);
+						this->gui_manager->UpdateElements();
 					}
 					else
 					{
 						std::cout << "Setting config resultion to 800, 600" << std::endl;
 						this->config->SetResolution(800, 600);
-						this->gui_manager->UpdateElements(1024, 768);
+						this->gui_manager->UpdateElements();
 					}
 					std::cout << "Config resolution: " << this->config->GetResolution().x << ", " << this->config->GetResolution().y << std::endl;
 				}

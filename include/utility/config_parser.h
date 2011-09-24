@@ -43,7 +43,7 @@ namespace Utility
 		//! \brief Parses a line and then extracts its contents
 		//! 
 		//! \param line			Line to parse
-		//! \param line_number	Number of the line (used for debugging)
+		//! \param line_number	Number of the line (used for logging)
 		//! 
 		//! \return False if the line couldn't be parsed
 		bool ParseLine( const std::string &line, const unsigned int &line_number );

@@ -6,9 +6,6 @@
 #include "utility/log.h"
 #include "utility/resource_manager.h"
 
-// debug
-#include <iostream>
-
 namespace Core
 {
 	GUIManager::GUIManager( sf::RenderWindow &window, Core::Config &config, Utility::ResourceManager &resource_manager )
@@ -23,17 +20,13 @@ namespace Core
 	{
 		// Remove elements.
 		for ( ElementMap::const_iterator iter = this->elements.begin(); iter != this->elements.end(); iter++ )
-		{
-			std::cout << "start" << std::endl;
 			delete iter->second;
-			std::cout << "end" << std::endl;
-		}
 	}
 
-	void GUIManager::UpdateElements( const float &old_resolution_x, const float &old_resolution_y )
+	void GUIManager::UpdateElements()
 	{
 		for ( ElementMap::const_iterator iter = this->elements.begin(); iter != this->elements.end(); iter++ )
-			iter->second->Update(old_resolution_x, old_resolution_y);
+			iter->second->Update();
 	}
 
 	GUI::Element& GUIManager::Element( const std::string &type, const std::string &name, const std::string &filename /* = "error.png" */ )
@@ -55,15 +48,5 @@ namespace Core
 			this->elements[name] = new GUI::Button(*this, filename);
 
 		return *this->elements[name];
-	}
-
-	void GUIManager::SetPosition( const std::string &name, const float &x, const float &y )
-	{
-		ElementMap::const_iterator iter = this->elements.find(name);
-		if ( iter == this->elements.end() )
-			return;
-
-		// We have found an element.
-		iter->second->SetPosition(x, y);
 	}
 }

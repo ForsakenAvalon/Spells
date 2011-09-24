@@ -42,17 +42,18 @@ namespace Core
 		~GUIManager();
 
 		friend class GUI::Element;
-		//friend class GUI::Button;
-		//friend class GUI::ActionBar;
+
+		//! \brief Screen width the original GUI is designed for
+		inline const unsigned short int OriginalWidth() const { return 1024; }
+
+		//! \brief Screen height the original GUI is designed for
+		inline const unsigned short int OriginalHeight() const { return 768; }
 
 		//! \brief Re-positions all GUI elements
 		//! 
 		//! Uses a new resolution to re-position all GUI elements.
 		//! Attempts to place the elements in relation to their old position.
-		//! 
-		//! \param old_resolution_x Previous resolution width
-		//! \param old_resolution_y Previous resolution height
-		void UpdateElements( const float &old_resolution_x, const float &old_resolution_y );
+		void UpdateElements();
 
 		//! \brief Creates or retrieves an element
 		//! 
@@ -62,13 +63,6 @@ namespace Core
 		//! 
 		//! \return A newly created or existing element
 		GUI::Element& Element( const std::string &type, const std::string &name, const std::string &filename = "error.png" );
-
-		//! \brief Sets the position of an element
-		//! 
-		//! \param name Unique element name
-		//! \param x	New x position in pixels
-		//! \param y	New y position in pixels
-		void SetPosition( const std::string &name, const float &x, const float &y );
 		
 		//! \brief Retrieve the RenderWindow
 		sf::RenderWindow& RenderWindow() { return window; }

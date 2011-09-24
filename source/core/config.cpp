@@ -70,7 +70,7 @@ namespace Core
 
 		// If we're trying to attempt to set a resolution that isn't valid simply set the
 		// resolution to the desktop mode.
-		this->window->Create(sf::VideoMode::GetDesktopMode());
+		this->window->Create(sf::VideoMode::GetFullscreenModes().back());
 	}
 	
 	const Utility::Vector<unsigned short int>& Config::GetResolution()

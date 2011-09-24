@@ -29,10 +29,7 @@ namespace GUI
 		virtual void Draw() = 0;
 
 		//! \brief Updates this element to a new resolution
-		//! 
-		//! \param old_resolution_x Previous window resolution width
-		//! \param old_resolution_y Previous window resolution height
-		void Update( const float &old_resolution_x, const float &old_resolution_y );
+		void Update();
 
 		//! \brief Returns the image name used for this element
 		//! 
@@ -42,6 +39,8 @@ namespace GUI
 	protected:
 		Core::GUIManager &gui_manager;	//!< Reference to the GUI Manager
 		std::string filename;			//!< Image name
+
+		float *x_pos, *y_pos;
 	};
 }
 
