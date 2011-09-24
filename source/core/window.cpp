@@ -83,6 +83,11 @@ namespace Core
 		this->objWindow.Create(sf::VideoMode(width, height), this->window_title, sf::Style::Close);
 	}
 
+	void Window::Create( sf::VideoMode video_mode )
+	{
+		this->objWindow.Create(video_mode, this->window_title, sf::Style::Close);
+	}
+
 	// 
 	// Private Functions
 	// 

@@ -4,6 +4,8 @@
 #include "core/window.h"
 #include "utility/log.h"
 
+#include <SFML/Window/VideoMode.hpp>
+
 namespace Core
 {
 	Config::Config( Core::Window *window /* = NULL */ )
@@ -50,14 +52,25 @@ namespace Core
 		this->resolution.x = width;
 		this->resolution.y = height;
 
-		if ( this->window != NULL )
-			this->window->Create(width, height);
-		else
+		sf::VideoMode video_mode(width, height);
+
+		if ( this->window == NULL )
 		{
 			Utility::Log log("config.txt");
-			log.Write("Warning, this->window is null, cannot create window.");
+			log.Write("Warning, this->window is null, cannot create new window.");
 			log.EndLine();
+			return;
 		}
+
+		if ( video_mode.IsValid() )
+		{
+			this->window->Create(video_mode);
+			return;
+		}
+
+		// If we're trying to attempt to set a resolution that isn't valid simply set the
+		// resolution to the desktop mode.
+		this->window->Create(sf::VideoMode::GetDesktopMode());
 	}
 	
 	const Utility::Vector<unsigned short int>& Config::GetResolution()

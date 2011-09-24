@@ -6,6 +6,7 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
+#include <SFML/Window/VideoMode.hpp>
 
 // Action bar test code
 namespace Core
@@ -44,9 +45,19 @@ namespace Core
 
 			//! \brief Changes the resolution of the window
 			//! 
+			//! The width & height should be validated as a video mode before
+			//! sent to this function.
+			//! 
 			//! \param width	New resolution width
 			//! \param height	New resolution height
 			inline void Create( const unsigned short int &width, const unsigned short int &height );
+
+			//! \brief Changes the resolution of the window
+			//! 
+			//! The video_mode should be validated before sent to this function.
+			//! 
+			//! \param video_mode New sf::VideoMode
+			void Create( sf::VideoMode video_mode );
 
 			//! \brief Assesses whether the window is running
 			//! 
