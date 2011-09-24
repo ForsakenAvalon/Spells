@@ -7,8 +7,8 @@
 
 namespace GUI
 {
-	ActionBar::ActionBar( const Core::GUIManager &gui_manager, const std::string &filename /* = "error.png" */ )
-		: GUI::Base(gui_manager, filename)
+	ActionBar::ActionBar( Core::GUIManager &gui_manager, const std::string &filename /* = "error.png" */ )
+		: GUI::Element(gui_manager, filename)
 	{
 		this->buttons = new GUI::Button*[11];
 		for ( int x = 0; x < 11; x++ )
@@ -25,7 +25,7 @@ namespace GUI
 
 	void ActionBar::Draw()
 	{
-		this->gui_manager.window.Draw(*this);
+		this->gui_manager.RenderWindow().Draw(*this);
 	}
 
 	void ActionBar::PositionUpdated()

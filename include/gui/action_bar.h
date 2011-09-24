@@ -2,14 +2,14 @@
 #ifndef GUI_ACTION_BAR_H
 #define GUI_ACTION_BAR_H
 
-#include "gui/base.h"
+#include "gui/element.h"
 
 namespace GUI
 {
 	class Button;
 
 	//! \brief A GUI element for an action bar
-	class ActionBar : public GUI::Base
+	class ActionBar : public GUI::Element
 	{
 	public:
 		//! \brief Constructor
@@ -18,7 +18,7 @@ namespace GUI
 		//! 
 		//! \param gui_manager	Core::GUIManager reference
 		//! \param filename		Location of image (in resources/images/)
-		ActionBar( const Core::GUIManager &gui_manager, const std::string &filename = "error.png" );
+		ActionBar( Core::GUIManager &gui_manager, const std::string &filename = "error.png" );
 
 		//! \brief Default deconstructor
 		~ActionBar();

@@ -2,14 +2,14 @@
 #ifndef GUI_BUTTON_H
 #define GUI_BUTTON_H
 
-#include "gui/base.h"
+#include "gui/element.h"
 
 #include <SFML/Window/Event.hpp>
 
 namespace GUI
 {
 	//! \brief A GUI element for a button
-	class Button : public GUI::Base
+	class Button : public GUI::Element
 	{
 	public:
 		//! \brief Constructor
@@ -18,7 +18,7 @@ namespace GUI
 		//! 
 		//! \param gui_manager	Core::GUIManager reference
 		//! \param filename		Location of image (in resources/images/)
-		Button( const Core::GUIManager &gui_manager, const std::string &filename = "error.png" );
+		Button( Core::GUIManager &gui_manager, const std::string &filename = "error.png" );
 
 		//! \brief Default deconstructor
 		~Button();

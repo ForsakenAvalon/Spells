@@ -5,8 +5,8 @@
 
 namespace GUI
 {
-	Button::Button( const Core::GUIManager &gui_manager, const std::string &filename /* = "error.png" */ )
-		: GUI::Base(gui_manager, filename)
+	Button::Button( Core::GUIManager &gui_manager, const std::string &filename /* = "error.png" */ )
+		: GUI::Element(gui_manager, filename)
 	{
 		this->hover = new bool();
 		*this->hover = false;
@@ -19,7 +19,7 @@ namespace GUI
 
 	void Button::Draw()
 	{
-		this->gui_manager.window.Draw(*this);
+		this->gui_manager.RenderWindow().Draw(*this);
 	}
 
 	bool Button::Clicked( const sf::Event &window_event )

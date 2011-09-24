@@ -26,23 +26,31 @@ namespace Utility
 		else
 		{
 			Utility::Log log("resource_manager.txt");
-			log.Write("Warning, not all resources have been destroyed.");
+			log.Write("Warning, not all resources have been destroyed: ");
 			log.EndLine();
+
+			for ( ResourceMap::const_iterator iter = this->resources.begin(); iter != this->resources.end(); iter++ )
+			{
+				log.Write("\t");
+				log.Write(iter->first.c_str());
+				log.EndLine();
+			}
 		}
 	}
 
 	void ResourceManager::KillResource( const std::string &filename )
 	{
+		
 		{
 			ResourceCount::const_iterator iter = this->resources_count.find(filename);
 			if ( iter == this->resources_count.end() )
 				return;
 		}
-
+		
 		this->resources_count[filename] -= 1;
 		if ( this->resources_count[filename] != 0 )
 			return;
-
+		
 		{
 			ResourceMap::const_iterator iter = this->resources.find(filename);
 			if ( iter == this->resources.end() )
@@ -52,6 +60,7 @@ namespace Utility
 		delete this->resources[filename];
 		this->resources.erase(filename);
 		this->resources_count.erase(filename);
+		
 	}
 
 	template<>

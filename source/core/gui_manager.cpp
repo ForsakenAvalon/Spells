@@ -6,6 +6,9 @@
 #include "utility/log.h"
 #include "utility/resource_manager.h"
 
+// debug
+#include <iostream>
+
 namespace Core
 {
 	GUIManager::GUIManager( sf::RenderWindow &window, Core::Config &config, Utility::ResourceManager &resource_manager )
@@ -18,87 +21,49 @@ namespace Core
 
 	GUIManager::~GUIManager()
 	{
-		// Remove elements and then kill their image resources.
-		for ( ButtonMap::const_iterator iter = this->buttons.begin(); iter != this->buttons.end(); iter++ )
+		// Remove elements.
+		for ( ElementMap::const_iterator iter = this->elements.begin(); iter != this->elements.end(); iter++ )
 		{
-			std::string temp = iter->second->Filename();
+			std::cout << "start" << std::endl;
 			delete iter->second;
-			this->resource_manager.KillResource(temp);
-		}
-
-		for ( ActionBarMap::const_iterator iter = this->actionbars.begin(); iter != this->actionbars.end(); iter++ )
-		{
-			std::string temp = iter->second->Filename();
-			delete iter->second;
-			this->resource_manager.KillResource(temp);
+			std::cout << "end" << std::endl;
 		}
 	}
 
 	void GUIManager::UpdateElements( const float &old_resolution_x, const float &old_resolution_y )
 	{
-		for ( ButtonMap::const_iterator iter = this->buttons.begin(); iter != this->buttons.end(); iter++ )
-			iter->second->Update(old_resolution_x, old_resolution_y);
-
-		for ( ActionBarMap::const_iterator iter = this->actionbars.begin(); iter != this->actionbars.end(); iter++ )
+		for ( ElementMap::const_iterator iter = this->elements.begin(); iter != this->elements.end(); iter++ )
 			iter->second->Update(old_resolution_x, old_resolution_y);
 	}
 
-	GUI::Button& GUIManager::Button( const std::string &name, const std::string &filename /* = "" */ )
+	GUI::Element& GUIManager::Element( const std::string &type, const std::string &name, const std::string &filename /* = "error.png" */ )
 	{
-		ButtonMap::const_iterator iter = this->buttons.find(name);
-		if ( iter == this->buttons.end() )
-		{
-			if ( filename.empty() )
-			{
-				Utility::Log log("gui_manager.txt");
-				log.Write("Trying to initialise button with no filename.");
-				log.EndLine();
-			}
+		ElementMap::const_iterator iter = this->elements.find(name);
+		if ( iter != this->elements.end() )
+			return *this->elements[name];
 
-			this->buttons[name] = new GUI::Button(*this, filename);
+		if ( filename.empty() || filename == "error.png" )
+		{
+			Utility::Log log("gui_manager.txt");
+			log.Write("Trying to initialise element with improper filename.");
+			log.EndLine();
 		}
 
-		return *this->buttons[name];
-	}
+		if ( type == "action_bar" )
+			this->elements[name] = new GUI::ActionBar(*this, filename);
+		else if ( type == "button" )
+			this->elements[name] = new GUI::Button(*this, filename);
 
-	GUI::ActionBar& GUIManager::ActionBar( const std::string &name, const std::string &filename /* = "" */ )
-	{
-		ActionBarMap::const_iterator iter = this->actionbars.find(name);
-		if ( iter == this->actionbars.end() )
-		{
-			if ( filename.empty() )
-			{
-				Utility::Log log("gui_manager.txt");
-				log.Write("Trying to initialise action bar with no filename.");
-				log.EndLine();
-			}
-
-			this->actionbars[name] = new GUI::ActionBar(*this, filename);
-		}
-
-		return *this->actionbars[name];
+		return *this->elements[name];
 	}
 
 	void GUIManager::SetPosition( const std::string &name, const float &x, const float &y )
 	{
-		ButtonMap::const_iterator iter = this->buttons.find(name);
-		if ( iter == this->buttons.end() )
-		{
-			ActionBarMap::const_iterator iter = this->actionbars.find(name);
-			if ( iter == this->actionbars.end() )
-			{
-				Utility::Log log("gui_manager.txt");
-				log.Write("Cannot set position of inexistant item.");
-				log.EndLine();
-				return;
-			}
-
-			// We have found an action bar.
-			iter->second->SetPosition(x, y);
+		ElementMap::const_iterator iter = this->elements.find(name);
+		if ( iter == this->elements.end() )
 			return;
-		}
 
-		// We have found a button.
+		// We have found an element.
 		iter->second->SetPosition(x, y);
 	}
 }

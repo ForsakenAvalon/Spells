@@ -1,5 +1,5 @@
 
-#include "gui/base.h"
+#include "gui/element.h"
 
 #include "core/config.h"
 #include "utility/resource_manager.h"
@@ -9,45 +9,31 @@
 
 // debug
 #include <iostream>
-// end debug
 
 namespace GUI
 {
-	Base::Base( const Core::GUIManager &gui_manager, const std::string &filename /* = "error.png" */ )
+	Element::Element( Core::GUIManager &gui_manager, const std::string &filename /* = "error.png" */ )
 		: sf::Sprite()
 		, gui_manager(gui_manager)
 		, filename(filename)
 	{
-		// We call KillResource in the gui_manager destructor.
-		sf::Texture *temp = this->gui_manager.resource_manager.GetResource<sf::Texture>(filename);
-		if ( temp != NULL )
-			this->SetTexture(*temp);
-		else
-		{
-			temp = this->gui_manager.resource_manager.GetResource<sf::Texture>("error.png");
-			if ( temp != NULL )
-				this->SetTexture(*temp);
-			else
-			{
-				Utility::Log log("base.txt");
-				log.Write("Coudln't load texture!");
-				log.EndLine();
-			}
-		}
+		// We call KillResource in the destructor.
+		this->SetTexture(*this->gui_manager.resource_manager.GetResource<sf::Texture>(this->filename));
 	}
 
-	Base::~Base()
+	Element::~Element()
 	{
-		
+		if ( !this->filename.empty() )
+			this->gui_manager.resource_manager.KillResource(this->filename);
 	}
 
-	void Base::Draw()
+	void Element::Draw()
 	{
 		
 	}
 
 	// Only called when the resolution has changed.
-	void Base::Update( const float &old_resolution_x, const float &old_resolution_y )
+	void Element::Update( const float &old_resolution_x, const float &old_resolution_y )
 	{
 		float window_width	= (float) this->gui_manager.config.GetResolution().x;
 		float window_height = (float) this->gui_manager.config.GetResolution().y;

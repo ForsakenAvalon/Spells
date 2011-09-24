@@ -1,6 +1,6 @@
 
-#ifndef GUI_BASE_H
-#define GUI_BASE_H
+#ifndef GUI_ELEMENT_H
+#define GUI_ELEMENT_H
 
 #include "core/gui_manager.h"
 
@@ -11,7 +11,7 @@
 namespace GUI
 {
 	//! \brief Base GUI class, all GUI elements should inherit from this
-	class Base : public sf::Sprite
+	class Element : public sf::Sprite
 	{
 	public:
 		//! \brief Constructor
@@ -20,10 +20,10 @@ namespace GUI
 		//! 
 		//! \param gui_manager	Core::GUIManager reference
 		//! \param filename		Location of image (in resources/images/)
-		Base( const Core::GUIManager &gui_manager, const std::string &filename = "error.png" );
+		Element( Core::GUIManager &gui_manager, const std::string &filename = "error.png" );
 
 		//! \brief Default deconstructor
-		~Base();
+		virtual ~Element();
 
 		//! \brief Draws this element to the window.
 		virtual void Draw() = 0;
@@ -40,14 +40,14 @@ namespace GUI
 		std::string& Filename() { return filename; }
 
 	protected:
-		Core::GUIManager gui_manager;	//!< Reference to the GUI Manager
+		Core::GUIManager &gui_manager;	//!< Reference to the GUI Manager
 		std::string filename;			//!< Image name
 	};
 }
 
-#endif // GUI_BASE_H
+#endif // GUI_ELEMENT_H
 
-//! \class GUI::Base
+//! \class GUI::Element
 //! \ingroup gui
 //! 
 //! A base class for all graphical user interface elements which provides
