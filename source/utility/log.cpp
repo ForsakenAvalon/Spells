@@ -63,5 +63,7 @@ namespace Utility
 
 		file.write(buffer->c_str(), buffer->size());
 		file.close();
+
+		*this->buffer = "";
 	}
 }
