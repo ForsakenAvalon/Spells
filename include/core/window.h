@@ -51,14 +51,14 @@ namespace Core
 			//! 
 			//! \param width	New resolution width
 			//! \param height	New resolution height
-			inline void Create( const unsigned short int &width, const unsigned short int &height );
+			void Create( const unsigned short int &width, const unsigned short int &height );
 
 			//! \brief Changes the resolution of the window
 			//! 
 			//! The video_mode should be validated before sent to this function.
 			//! 
 			//! \param video_mode New sf::VideoMode
-			void Create( sf::VideoMode video_mode );
+			void Create( sf::VideoMode &video_mode );
 
 			//! \brief Assesses whether the window is running
 			//! 
@@ -76,6 +76,12 @@ namespace Core
 			sf::RenderWindow& RenderWindow()	{ return objWindow; }
 
 		private:
+			//! \brief Call when the game window is resized
+			void Resized();
+
+			//! \brief Validate a video mode
+			void ValidateVideoMode( sf::VideoMode &video_mode );
+
 			//! \brief Main program loop
 			void Loop();
 
@@ -93,12 +99,6 @@ namespace Core
 
 			//! \brief Handles any events and calls to other event functions
 			void Events();
-
-			//! \brief Attempts to load configuration settings
-			void LoadConfig();
-
-			//! \brief Attempts to save confgiuration settings
-			void SaveConfig();
 
 			sf::RenderWindow objWindow;					//!< RenderWindow
 			sf::Event objEvent;							//!< Event object

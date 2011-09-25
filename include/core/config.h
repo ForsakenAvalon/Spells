@@ -40,6 +40,12 @@ namespace Core
 		//! \brief Default deconstructor
 		~Config();
 
+		//! \brief Load up the configuration settings
+		void LoadConfig();
+
+		//! \brief Save the configuration settings
+		void SaveConfig();
+
 		//! \brief Sets the private window member
 		//! 
 		//! \param window Pointer to Core::Window
@@ -64,8 +70,7 @@ namespace Core
 		//! 
 		//! \param width	Width of the window in pixels
 		//! \param height	Height of the window in pixels
-		//! \param update	Whether to re-create the window or not
-        void SetResolution( const unsigned short int &width, const unsigned short int &height, const bool &update = true );
+        void SetResolution( const unsigned short int &width, const unsigned short int &height );
 
 		//! \brief Gets the resolution of the screen
 		//! 

@@ -3,8 +3,12 @@
 
 #include "core/window.h"
 #include "utility/log.h"
+#include "Utility/config_parser.h"
 
 #include <SFML/Window/VideoMode.hpp>
+
+#include <fstream>
+#include <sstream>
 
 namespace Core
 {
@@ -25,6 +29,126 @@ namespace Core
 	Config::~Config()
 	{
 		this->window = NULL;
+	}
+
+	void Config::LoadConfig()
+	{
+		// Attempt to load any text configuration settings.
+		Utility::ConfigParser *config_parser = new Utility::ConfigParser("config.txt");
+
+		// Exit function if the file can't be read.
+		if ( !config_parser->ReadFile() )
+		{
+			// Create a new file or overwrite one that exists as it's corrupt.
+			std::ofstream new_file("config.txt", std::ofstream::in | std::ofstream::trunc);
+
+			new_file << 
+				"\nresolution = 1024x768\n\n"
+				"music_volume = 50 // 0 - 100%.\n"
+				"sound_volume = 50 // 0 - 100%.\n\n"
+				"mouse_sensitivity = 50 // 0 - 200%\n"
+				"mouse_inverted = false // Mouse inverted, true/false.\n";
+
+			new_file.close();
+
+			return;
+		}
+
+		// Cycle through each configuration option.
+		// Return from this function if at any point we cannot continue
+		// as this suggests a corrupt config file we don't wish to use.
+
+		// Resolution.
+		{
+			unsigned short int resolution_x;
+			unsigned short int resolution_y;
+
+			std::string s_resolution_x = config_parser->GetValue("resolution");
+			unsigned int pos = s_resolution_x.find('x');
+			if ( pos != std::string::npos )
+			{
+				std::string s_resolution_y = s_resolution_x.substr(pos + 1);
+				s_resolution_x = s_resolution_x.substr(0, pos);
+
+				std::stringstream ss_x(s_resolution_x);
+				std::stringstream ss_y(s_resolution_y);
+
+				if ( (ss_x >> resolution_x) && (ss_y >> resolution_y) )
+				{
+					if ( resolution_x != this->GetResolution().x || resolution_y != this->GetResolution().y )
+						this->SetResolution(resolution_x, resolution_y);
+				}
+			}
+		}
+
+		// Music volume.
+		{
+			unsigned short int music_volume;
+
+			std::string s_music_volume = config_parser->GetValue("music_volume");
+			std::stringstream ss(s_music_volume);
+
+			if ( (ss >> music_volume) )
+				if ( music_volume != this->GetMusicVolume() )
+					this->SetMusicVolume(music_volume);
+		}
+
+		// Sound volume.
+		{
+			unsigned short int sound_volume;
+
+			std::string s_sound_volume = config_parser->GetValue("sound_volume");
+			std::stringstream ss(s_sound_volume);
+
+			if ( (ss >> sound_volume) )
+				if ( sound_volume != this->GetSoundVolume() )
+					this->SetSoundVolume(sound_volume);
+		}
+
+		// Mouse sensitivity.
+		{
+			unsigned short int mouse_sensitivity;
+
+			std::string s_mouse_sensitivity = config_parser->GetValue("mouse_sensitivity");
+			std::stringstream ss(s_mouse_sensitivity);
+
+			if ( (ss >> mouse_sensitivity) )
+				if ( mouse_sensitivity != this->GetMouseSensitivity() )
+					this->SetMouseSensitivity(mouse_sensitivity);
+		}
+
+		// Mouse inverted.
+		{
+			bool mouse_inverted;
+
+			std::string s_mouse_inverted = config_parser->GetValue("mouse_inverted");
+			std::stringstream ss(s_mouse_inverted);
+
+			if ( (ss >> mouse_inverted) )
+				if ( mouse_inverted != this->GetMouseInverted() )
+					this->SetMouseInverted(mouse_inverted);
+		}
+
+		// Clean up.
+		delete config_parser;
+	}
+
+	void Config::SaveConfig()
+	{
+		// Attempts to save the configuration settings
+		Utility::ConfigParser *config_parser = new Utility::ConfigParser("config.txt");
+
+		std::ofstream new_file("config.txt", std::ofstream::in | std::ofstream::trunc);
+
+		new_file << "\nresolution = " << this->GetResolution().x << "x" << this->GetResolution().y << "\n\n";
+		new_file << "music_volume = " << this->GetMusicVolume() << " // 0 - 100%.\n";
+		new_file << "sound_volume = " << this->GetSoundVolume() << " // 0 - 100%.\n\n";
+		new_file << "mouse_sensitivity = " << this->GetMouseSensitivity() << " // 0 - 200%\n";
+		new_file << "mouse_inverted = " << this->GetMouseInverted() << " // Mouse inverted, true/false.\n";
+
+		new_file.close();
+
+		delete config_parser;
 	}
 
 	void Config::SetWindow( Core::Window *window )
@@ -48,33 +172,10 @@ namespace Core
 	// 
 	// Resolution
 	// 
-	void Config::SetResolution( const unsigned short int &width, const unsigned short int &height, const bool &update /* = true */ )
+	void Config::SetResolution( const unsigned short int &width, const unsigned short int &height )
 	{
 		this->resolution.x = width;
 		this->resolution.y = height;
-
-		if ( !update )
-			return;
-
-		sf::VideoMode video_mode(width, height);
-
-		if ( this->window == NULL )
-		{
-			Utility::Log log("config.txt");
-			log.Write("Warning, this->window is null, cannot create new window.");
-			log.EndLine();
-			return;
-		}
-
-		if ( video_mode.IsValid() )
-		{
-			this->window->Create(video_mode);
-			return;
-		}
-
-		// If we're trying to attempt to set a resolution that isn't valid simply set the
-		// resolution to the desktop mode.
-		this->window->Create(sf::VideoMode::GetFullscreenModes().back());
 	}
 	
 	const Utility::Vector<unsigned short int>& Config::GetResolution()
