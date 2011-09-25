@@ -20,7 +20,7 @@ namespace GUI
 
 	void Button::Draw()
 	{
-		//this->gui_manager.RenderWindow().Draw(*this);
+		this->gui_manager.RenderWindow().Draw(*this);
 	}
 
 	bool Button::Clicked( const sf::Event &window_event )

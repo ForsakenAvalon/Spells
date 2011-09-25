@@ -16,13 +16,7 @@ namespace GUI
 	{
 		this->buttons = new GUI::Button*[11];
 		for ( int x = 0; x < 11; x++ )
-		{
-			std::string temp = this->filename;
-			std::stringstream ss(x);
-			temp.append(ss.str());
-
 			this->buttons[x] = new GUI::Button(this->gui_manager);
-		}
 	}
 
 	ActionBar::~ActionBar()
@@ -39,7 +33,7 @@ namespace GUI
 
 	void ActionBar::Draw()
 	{
-		//this->gui_manager.RenderWindow().Draw(*this);
+		this->gui_manager.RenderWindow().Draw(*this);
 	}
 
 	void ActionBar::PositionUpdated()

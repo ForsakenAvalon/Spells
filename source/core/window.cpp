@@ -120,7 +120,7 @@ namespace Core
 		//this->action_bar->Update();
 		//this->gui_manager->ActionBar("testbar").Update();
 		this->gui_manager->Element("action_bar", "testbar").Draw();
-		//this->gui_manager->Element("button", "testbutton").Draw();
+		this->gui_manager->Element("button", "testbutton").Draw();
 		//this->objWindow.Draw(this->action_bar->GetActionBar());
 		// End action bar test code
 
