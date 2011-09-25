@@ -229,7 +229,15 @@ namespace Core
 				if ( (ss_x >> resolution_x) && (ss_y >> resolution_y) )
 				{
 					if ( resolution_x != this->config->GetResolution().x || resolution_y != this->config->GetResolution().y )
+					{
+						// Ensure that the resolution is never below 1024, 768 when starting.
+						if ( resolution_x < 1024 )
+							resolution_x = 1024;
+						if ( resolution_y < 768 )
+							resolution_y = 768;
+
 						this->config->SetResolution(resolution_x, resolution_y);
+					}
 				}
 				else // If we couldn't use this new resolution, create the window with the default resolution.
 					this->config->SetResolution(1024, 768);
