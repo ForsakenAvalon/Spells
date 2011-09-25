@@ -3,8 +3,11 @@
 
 #include "core/gui_manager.h"
 #include "gui/button.h"
+#include "utility/resource_manager.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
+
+#include <sstream>
 
 namespace GUI
 {
@@ -13,20 +16,30 @@ namespace GUI
 	{
 		this->buttons = new GUI::Button*[11];
 		for ( int x = 0; x < 11; x++ )
-			this->buttons[x] = new GUI::Button(gui_manager);
+		{
+			std::string temp = this->filename;
+			std::stringstream ss(x);
+			temp.append(ss.str());
+
+			this->buttons[x] = new GUI::Button(this->gui_manager);
+		}
 	}
 
 	ActionBar::~ActionBar()
 	{
 		for ( int x = 0; x < 11; x++ )
+		{
+			std::string temp = this->buttons[x]->Filename();
 			delete this->buttons[x];
+			this->gui_manager.resource_manager.KillResource(temp);
+		}	
 
 		delete this->buttons;
 	}
 
 	void ActionBar::Draw()
 	{
-		this->gui_manager.RenderWindow().Draw(*this);
+		//this->gui_manager.RenderWindow().Draw(*this);
 	}
 
 	void ActionBar::PositionUpdated()

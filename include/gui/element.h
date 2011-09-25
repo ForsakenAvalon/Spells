@@ -59,7 +59,7 @@ namespace GUI
 
 		short int *gui_x_position;		// x position in GUI coords
 		short int *gui_y_position;		// y position in GUI coords
-		bool *gui_central;					// Whether 0 represents the screen center for this element
+		bool *gui_central;				// Whether 0 represents the screen center for this element
 	};
 }
 

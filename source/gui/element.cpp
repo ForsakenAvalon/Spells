@@ -24,9 +24,6 @@ namespace GUI
 
 	Element::~Element()
 	{
-		if ( !this->filename.empty() )
-			this->gui_manager.resource_manager.KillResource(this->filename);
-
 		delete this->gui_x_position;
 		delete this->gui_y_position;
 		delete this->gui_central;

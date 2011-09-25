@@ -37,6 +37,7 @@ namespace Core
 		// Action bar test code
 		this->gui_manager = new Core::GUIManager(this->objWindow, *this->config, *this->resource_manager);
 		this->gui_manager->Element("action_bar", "testbar", "actionbar.PNG").SetGUICoords(0, -45, true);
+		this->gui_manager->Element("button", "testbutton", "button.png").SetGUICoords(0, 0, true);
 		// End action bar test code
 	}
 
@@ -119,6 +120,7 @@ namespace Core
 		//this->action_bar->Update();
 		//this->gui_manager->ActionBar("testbar").Update();
 		this->gui_manager->Element("action_bar", "testbar").Draw();
+		//this->gui_manager->Element("button", "testbutton").Draw();
 		//this->objWindow.Draw(this->action_bar->GetActionBar());
 		// End action bar test code
 

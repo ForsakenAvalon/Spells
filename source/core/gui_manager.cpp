@@ -20,7 +20,14 @@ namespace Core
 	{
 		// Remove elements.
 		for ( ElementMap::const_iterator iter = this->elements.begin(); iter != this->elements.end(); iter++ )
-			delete iter->second;
+		{
+			GUI::Element *element = iter->second;
+			std::string temp = element->Filename();
+			delete element;
+			this->resource_manager.KillResource(temp);
+		}
+
+		this->elements.clear();
 	}
 
 	void GUIManager::UpdateElements()

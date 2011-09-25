@@ -10,7 +10,6 @@
 namespace GUI
 {
 	class Element;
-	class Button;
 	class ActionBar;
 }
 
@@ -42,6 +41,7 @@ namespace Core
 		~GUIManager();
 
 		friend class GUI::Element;
+		friend class GUI::ActionBar; // So that it can create its own buttons and then delete them.
 
 		//! \brief Re-positions all GUI elements
 		//! 
@@ -57,7 +57,7 @@ namespace Core
 		//! 
 		//! \return A newly created or existing element
 		GUI::Element& Element( const std::string &type, const std::string &name, const std::string &filename = "error.png" );
-		
+
 		//! \brief Retrieve the RenderWindow
 		sf::RenderWindow& RenderWindow() { return window; }
 
