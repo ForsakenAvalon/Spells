@@ -43,12 +43,6 @@ namespace Core
 
 		friend class GUI::Element;
 
-		//! \brief Screen width the original GUI is designed for
-		inline const unsigned short int OriginalWidth() const { return 1024; }
-
-		//! \brief Screen height the original GUI is designed for
-		inline const unsigned short int OriginalHeight() const { return 768; }
-
 		//! \brief Re-positions all GUI elements
 		//! 
 		//! Uses a new resolution to re-position all GUI elements.

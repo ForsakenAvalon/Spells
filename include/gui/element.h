@@ -31,6 +31,20 @@ namespace GUI
 		//! \brief Updates this element to a new resolution
 		void Update();
 
+		//! \brief Sets the gui position of the element
+		//! 
+		//! GUI position works from the edges of the screen. Elements should
+		//! be positioned as so (relative to screen):
+		//! 
+		//! - Positive x & y specify the x/y position from the top left
+		//! - Negative x & y specify the x/y position from the bottom right
+		//! - 0 specifies centrarl unless no_central is true
+		//!
+		//! \param x_position x position of element as described above
+		//! \param y_position y position of element as described above
+		//! \param no_central Whether this element will be centered for 0 values
+		void SetGUICoords( const short int &x_position, const short int &y_position, const bool &central );
+
 		//! \brief Returns the image name used for this element
 		//! 
 		//! \return Image name for the image this element uses
@@ -40,7 +54,9 @@ namespace GUI
 		Core::GUIManager &gui_manager;	//!< Reference to the GUI Manager
 		std::string filename;			//!< Image name
 
-		float *x_pos, *y_pos;
+		short int *gui_x_position;		// x position in GUI coords
+		short int *gui_y_position;		// y position in GUI coords
+		bool *gui_central;					// Whether 0 represents the screen center for this element
 	};
 }
 
