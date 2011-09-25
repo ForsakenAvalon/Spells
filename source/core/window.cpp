@@ -36,10 +36,10 @@ namespace Core
 
 		// Action bar test code
 		this->gui_manager = new Core::GUIManager(this->objWindow, *this->config, *this->resource_manager);
-		this->gui_manager->Element("action_bar", "testbar", "actionbar.PNG").SetPosition(
-			(float) ((this->objWindow.GetWidth() - 502) / 2),
-			(float) (this->objWindow.GetHeight() - 45)
-			);
+		//this->gui_manager->Element("action_bar", "testbar", "actionbar.PNG").SetPosition(
+		//	(float) ((this->objWindow.GetWidth() - 502) / 2),
+		//	(float) (this->objWindow.GetHeight() - 45)
+		//	);
 		// End action bar test code
 	}
 
@@ -121,7 +121,7 @@ namespace Core
 		// Action bar test code
 		//this->action_bar->Update();
 		//this->gui_manager->ActionBar("testbar").Update();
-		this->gui_manager->Element("action_bar", "testbar").Draw();
+		//this->gui_manager->Element("action_bar", "testbar").Draw();
 		//this->objWindow.Draw(this->action_bar->GetActionBar());
 		// End action bar test code
 

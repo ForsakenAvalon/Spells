@@ -11,6 +11,7 @@ namespace Core
 	Config::Config( Core::Window *window /* = NULL */ )
 		: window(window)
 		, window_title(window_title)
+		, resolution(1024, 768)
 		, volume_music(50)
 		, volume_sound(50)
 		, mouse_sensitivity(50)
