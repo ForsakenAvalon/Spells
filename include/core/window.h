@@ -7,6 +7,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/VideoMode.hpp>
+#include <SFML/Graphics/View.hpp>
 
 // Action bar test code
 namespace Core
@@ -101,6 +102,7 @@ namespace Core
 
 			sf::RenderWindow objWindow;					//!< RenderWindow
 			sf::Event objEvent;							//!< Event object
+			sf::View *view;								//!< Default view
 
 			std::string window_title;					//!< Window title
 

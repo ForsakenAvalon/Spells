@@ -39,6 +39,8 @@ namespace Core
 		this->gui_manager->Element("action_bar", "testbar", "actionbar.PNG").SetGUICoords(0, -45, true);
 		this->gui_manager->Element("button", "testbutton", "button.png").SetGUICoords(0, 0, true);
 		// End action bar test code
+
+		this->view = new sf::View(sf::FloatRect(0, 0, this->config->GetResolution().x, this->config->GetResolution().y));
 	}
 
 	Window::~Window()
@@ -78,12 +80,12 @@ namespace Core
 
 	inline void Window::Create( const unsigned short int &width, const unsigned short int &height )
 	{
-		this->objWindow.Create(sf::VideoMode(width, height), this->window_title, sf::Style::Close);
+		this->objWindow.Create(sf::VideoMode(width, height), this->window_title, sf::Style::Close | sf::Style::Resize);
 	}
 
 	void Window::Create( sf::VideoMode video_mode )
 	{
-		this->objWindow.Create(video_mode, this->window_title, sf::Style::Close);
+		this->objWindow.Create(video_mode, this->window_title, sf::Style::Close | sf::Style::Resize);
 	}
 
 	// 
@@ -116,6 +118,7 @@ namespace Core
 
 	void Window::Draw()
 	{
+		this->objWindow.SetView(*this->view);
 		// Action bar test code
 		//this->action_bar->Update();
 		//this->gui_manager->ActionBar("testbar").Update();
@@ -125,6 +128,7 @@ namespace Core
 		// End action bar test code
 
 		this->state_manager->Update();
+		this->objWindow.SetView(this->objWindow.GetDefaultView());
 	}
 
 	void Window::Exit()
@@ -147,6 +151,9 @@ namespace Core
 				break;
 
 			case sf::Event::Resized:
+				this->view->Reset(sf::FloatRect(0, 0, this->objEvent.Size.Width, this->objEvent.Size.Height));
+				this->config->SetResolution(this->objEvent.Size.Width, this->objEvent.Size.Height, false);
+				this->gui_manager->UpdateElements();
 				break;
 
 			case sf::Event::KeyPressed:
@@ -168,7 +175,6 @@ namespace Core
 					std::cout << "Config resolution: " << this->config->GetResolution().x << ", " << this->config->GetResolution().y << std::endl;
 				}
 				// End action bar test code
-
 				break;
 
 			default:

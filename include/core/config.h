@@ -64,7 +64,8 @@ namespace Core
 		//! 
 		//! \param width	Width of the window in pixels
 		//! \param height	Height of the window in pixels
-        void SetResolution( const unsigned short int &width, const unsigned short int &height );
+		//! \param update	Whether to re-create the window or not
+        void SetResolution( const unsigned short int &width, const unsigned short int &height, const bool &update = true );
 
 		//! \brief Gets the resolution of the screen
 		//! 

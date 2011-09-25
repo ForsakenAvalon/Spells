@@ -48,10 +48,13 @@ namespace Core
 	// 
 	// Resolution
 	// 
-	void Config::SetResolution( const unsigned short int &width, const unsigned short int &height )
+	void Config::SetResolution( const unsigned short int &width, const unsigned short int &height, const bool &update /* = true */ )
 	{
 		this->resolution.x = width;
 		this->resolution.y = height;
+
+		if ( !update )
+			return;
 
 		sf::VideoMode video_mode(width, height);
 
