@@ -75,9 +75,6 @@ namespace Core
 			sf::RenderWindow& RenderWindow()	{ return objWindow; }
 
 		private:
-			//! \brief Upon resizing the window
-			void Resized();
-
 			//! \brief Main program loop
 			void Loop();
 
