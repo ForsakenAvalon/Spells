@@ -8,8 +8,7 @@ namespace GUI
 	Button::Button( Core::GUIManager &gui_manager, const std::string &filename /* = "error.png" */ )
 		: GUI::Element(gui_manager, filename)
 	{
-		this->hover = new bool();
-		*this->hover = false;
+		this->hover = new bool(false);
 	}
 
 	Button::~Button()
