@@ -2,11 +2,14 @@
 #ifndef GUI_ELEMENT_H
 #define GUI_ELEMENT_H
 
-#include "core/gui_manager.h"
-
 #include <string>
 
 #include <SFML/Graphics/Sprite.hpp>
+
+namespace Core
+{
+	class GUIManager;
+}
 
 namespace GUI
 {

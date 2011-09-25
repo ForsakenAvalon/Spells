@@ -1,14 +1,11 @@
 
 #include "gui/element.h"
 
+#include "core/gui_manager.h"
 #include "core/config.h"
 #include "utility/resource_manager.h"
-#include "utility/log.h"
 
 #include <SFML/Graphics/Texture.hpp>
-
-// debug
-#include <iostream>
 
 namespace GUI
 {
@@ -84,5 +81,8 @@ namespace GUI
 		*this->gui_x_position	= x_position;
 		*this->gui_y_position	= y_position;
 		*this->gui_central		= central;
+
+		// If the position is changed we need to update it.
+		this->Update();
 	}
 }

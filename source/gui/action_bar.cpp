@@ -1,6 +1,7 @@
 
 #include "gui/action_bar.h"
 
+#include "core/gui_manager.h"
 #include "gui/button.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>

@@ -1,6 +1,8 @@
 
 #include "gui/button.h"
 
+#include "core/gui_manager.h"
+
 #include <SFML/Graphics/RenderWindow.hpp>
 
 namespace GUI
